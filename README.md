@@ -2,4 +2,4 @@
 
 Mobile game :D
 
-Assets: 
+Assets: https://github.com/AradDruker/Project-V/issues/7
