@@ -2,9 +2,4 @@
 
 Mobile game :D
 
-
-
-
-
-
 Assets: 
