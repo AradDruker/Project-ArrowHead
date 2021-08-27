@@ -10,3 +10,11 @@ data_*/
 # System/tool-specific ignores
 .directory
 *~
+
+# Git-Plugin-Godot Specific ignores
+default_env.tres
+icon.png
+icon.png.import
+project.godot
+scn/
+override.cfg
