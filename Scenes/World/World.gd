@@ -1,30 +1,32 @@
 extends Node
 
 export (PackedScene) var Enemy
-var enemies = []
 
 func _ready():
 	randomize()
 
 func _physics_process(_delta):
+	var enemies = $Enemies.get_children()
 	for en in enemies:
-		en.get_node("EnemyKinematic").player_details($Player/PlayerKinematicBody2D.position)
+		if en:
+			en.player_details($PlayerKinematicBody2D.position)
 	
 	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
-	for _i in range(randi() % 4):
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var my_random_number = rng.randf_range(3,4)
+	for _i in my_random_number:
 		$EnemyPath/EnemySpawnLocation.offset = randi()
 		var enemy = Enemy.instance()
-		add_child(enemy)
-		enemy.get_node("EnemyKinematic").position = $EnemyPath/EnemySpawnLocation.position
-		enemies.append(enemy)
+		$Enemies.add_child(enemy)
+		enemy.position = $EnemyPath/EnemySpawnLocation.position
 		
 	
 func _on_EnemySpawn_timeout():
 	for _i in range(randi() % 4):
 		$EnemyPath/EnemySpawnLocation.offset = randi()
 		var enemy = Enemy.instance()
-		add_child(enemy)
-		enemy.get_node("EnemyKinematic").position = $EnemyPath/EnemySpawnLocation.position
-		enemies.append(enemy)
+		$Enemies.add_child(enemy)
+		enemy.position = $EnemyPath/EnemySpawnLocation.position

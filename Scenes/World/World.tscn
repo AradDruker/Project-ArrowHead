@@ -13,18 +13,21 @@ _data = {
 script = ExtResource( 3 )
 Enemy = ExtResource( 2 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
+[node name="PlayerKinematicBody2D" parent="." instance=ExtResource( 1 )]
+
+[node name="Enemies" type="Node" parent="."]
 
 [node name="EnemySpawn" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 3.0
 autostart = true
 
 [node name="EnemySpawnInstant" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 autostart = true
 
 [node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2( -40.4434, -29.947 )
+scale = Vector2( 1.06168, 1.08343 )
 curve = SubResource( 1 )
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
@@ -32,4 +35,4 @@ position = Vector2( -2.63028, -3.0807 )
 rotation = 0.00220261
 
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
-[connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawn_timeout"]
+[connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]

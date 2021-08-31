@@ -25,7 +25,7 @@ func _physics_process(delta):
 		velocity += input_vector * ACCELERATION * delta
 		velocity = velocity.clamped(MAX_SPEED)
 		var ang = atan2(velocity.x, velocity.y)
-		$ShipSprite.rotation = PI - ang
+		$PlayerSprite.rotation = PI - ang
 	
 	#Player stops
 	else:
