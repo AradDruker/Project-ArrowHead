@@ -25,7 +25,7 @@ func _on_EnemySpawnInstant_timeout():
 		
 	
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 4):
+	for _i in range(randi() % 5):
 		$EnemyPath/EnemySpawnLocation.offset = randi()
 		var enemy = Enemy.instance()
 		$Enemies.add_child(enemy)

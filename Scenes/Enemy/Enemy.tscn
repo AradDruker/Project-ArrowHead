@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/Enemy/EnemySprite.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 12.0511
-height = 0.0
+radius = 7.125
+height = 9.79291
 
 [node name="EnemyKinematic" type="KinematicBody2D"]
 position = Vector2( 0, -0.353546 )
@@ -17,10 +17,11 @@ __meta__ = {
 
 [node name="VisibilityNotifier2D" type="VisibilityEnabler2D" parent="."]
 light_mask = 0
-position = Vector2( -0.0393723, -15.0167 )
-scale = Vector2( 0.350353, 0.74565 )
+position = Vector2( -0.101872, -7.3292 )
+scale = Vector2( 0.444103, 0.8894 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 

@@ -26,8 +26,8 @@ one_shot = true
 autostart = true
 
 [node name="EnemyPath" type="Path2D" parent="."]
-position = Vector2( -40.4434, -29.947 )
-scale = Vector2( 1.06168, 1.08343 )
+position = Vector2( -115.478, -116.044 )
+scale = Vector2( 1.17916, 1.32328 )
 curve = SubResource( 1 )
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
