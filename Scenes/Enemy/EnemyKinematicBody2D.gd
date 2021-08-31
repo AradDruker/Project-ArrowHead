@@ -15,7 +15,7 @@ func _ready():
 	randomize()
 	ACCELERATION = randi() % 10 + 5
 	MAX_SPEED = randi() % 201 + 200
-	var visibility_notifier = get_node(visibility_notifier_path)
+	var _visibility_notifier = get_node(visibility_notifier_path)
 	
 
 func player_details(pos):
@@ -24,7 +24,7 @@ func player_details(pos):
 
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Mouse position for enemy to focus on
 	
 	# Vector towards the mouse
@@ -49,3 +49,4 @@ func _physics_process(delta):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	hide()
+	

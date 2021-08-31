@@ -19,6 +19,11 @@ Enemy = ExtResource( 2 )
 wait_time = 4.0
 autostart = true
 
+[node name="EnemySpawnInstant" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
 [node name="EnemyPath" type="Path2D" parent="."]
 curve = SubResource( 1 )
 
@@ -27,3 +32,4 @@ position = Vector2( -2.63028, -3.0807 )
 rotation = 0.00220261
 
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
+[connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawn_timeout"]
