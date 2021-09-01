@@ -5,7 +5,7 @@ var velocity = Vector2(1.0, 1.0)
 var MAX_SPEED
 var ACCELERATION
 var player_pos
-
+signal enemy_collide
 
 
 func _ready():
@@ -17,9 +17,6 @@ func _ready():
 
 func player_details(pos):
 	player_pos = pos
-
-
-
 
 func _physics_process(_delta):
 	# Mouse position for enemy to focus on
@@ -40,8 +37,8 @@ func _physics_process(_delta):
 	
 	if pow(pow(position.x - player_pos.x, 2) + pow(position.y - player_pos.y, 2), 0.5) > 3:
 # warning-ignore:return_value_discarded
-		move_and_slide(velocity)
-
+		if move_and_slide(velocity):
+			print('hello')
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

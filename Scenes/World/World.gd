@@ -30,3 +30,11 @@ func _on_EnemySpawn_timeout():
 		var enemy = Enemy.instance()
 		$Enemies.add_child(enemy)
 		enemy.position = $EnemyPath/EnemySpawnLocation.position
+	
+	
+	
+	
+	
+	
+	
+	

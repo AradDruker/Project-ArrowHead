@@ -1,12 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Characters/enemy_A.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Enemy/EnemyKinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Enemy/EnemySprite.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Effects/Explode/explode_3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Effects/Explode/explode_5.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Effects/Explode/explode_6.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Effects/Explode/explode_4.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Effects/Explode/explode_2.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Enemy/AnimatedSprite.gd" type="Script" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.21515
 height = 12.9388
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "explosion",
+"speed": 4.0
+} ]
 
 [node name="EnemyKinematicBody2D" type="KinematicBody2D"]
 position = Vector2( 0, -0.353546 )
@@ -27,5 +46,10 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "explosion"
+script = ExtResource( 9 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

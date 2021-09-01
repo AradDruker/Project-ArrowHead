@@ -73,6 +73,9 @@ autostart = true
 position = Vector2( -115.478, -116.044 )
 scale = Vector2( 1.17916, 1.32328 )
 curve = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
 position = Vector2( -2.63028, -3.0807 )
