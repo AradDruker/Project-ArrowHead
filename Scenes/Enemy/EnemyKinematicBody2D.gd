@@ -39,6 +39,7 @@ func _physics_process(_delta):
 	$EnemySprite.rotation = PI - ang
 	
 	if pow(pow(position.x - player_pos.x, 2) + pow(position.y - player_pos.y, 2), 0.5) > 3:
+# warning-ignore:return_value_discarded
 		move_and_slide(velocity)
 
 

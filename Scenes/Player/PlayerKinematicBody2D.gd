@@ -41,7 +41,7 @@ func _physics_process(delta):
 	# Bumps player if hits wall
 	var posx = position.x
 	var posy = position.y
-	if posy <= 10 or posy >= screen_size.y - 10 or posx <= 10 or posx >= screen_size.x - 10:
+	if posy <= 37 or posy >= screen_size.y - 37 or posx <= 37 or posx >= screen_size.x - 37:
 		velocity = velocity.rotated(PI/2)
 
 	move_and_collide(velocity)
