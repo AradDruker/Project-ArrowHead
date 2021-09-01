@@ -25,7 +25,7 @@ func _physics_process(delta):
 		velocity += input_vector * ACCELERATION * delta
 		velocity = velocity.clamped(MAX_SPEED)
 		var ang = atan2(velocity.x, velocity.y)
-		$ShipSprite.rotation = PI - ang
+		$PlayerSprite.rotation = PI - ang
 	
 	#Player stops
 	else:
@@ -41,7 +41,7 @@ func _physics_process(delta):
 	# Bumps player if hits wall
 	var posx = position.x
 	var posy = position.y
-	if posy <= 10 or posy >= screen_size.y - 10 or posx <= 10 or posx >= screen_size.x - 10:
+	if posy <= 37 or posy >= screen_size.y - 37 or posx <= 37 or posx >= screen_size.x - 37:
 		velocity = velocity.rotated(PI/2)
 
 	move_and_collide(velocity)

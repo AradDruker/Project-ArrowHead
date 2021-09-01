@@ -5,28 +5,27 @@
 [ext_resource path="res://Scenes/Enemy/EnemySprite.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 12.0511
-height = 0.0
+radius = 4.21515
+height = 12.9388
 
-[node name="Enemy" type="Node2D"]
-
-[node name="EnemyKinematic" type="KinematicBody2D" parent="."]
+[node name="EnemyKinematicBody2D" type="KinematicBody2D"]
+position = Vector2( 0, -0.353546 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
-visibility_notifier_path = NodePath("VisibilityNotifier2D")
 
-[node name="VisibilityNotifier2D" type="VisibilityEnabler2D" parent="EnemyKinematic"]
+[node name="VisibilityNotifier2D" type="VisibilityEnabler2D" parent="."]
 light_mask = 0
-position = Vector2( -0.0393723, -11.9299 )
-scale = Vector2( 0.350353, 0.436973 )
+position = Vector2( -0.101872, -7.3292 )
+scale = Vector2( 0.444103, 0.8894 )
 
-[node name="EnemySprite" type="Sprite" parent="EnemyKinematic"]
+[node name="EnemySprite" type="Sprite" parent="."]
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 script = ExtResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyKinematic"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[connection signal="screen_exited" from="EnemyKinematic/VisibilityNotifier2D" to="EnemyKinematic" method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

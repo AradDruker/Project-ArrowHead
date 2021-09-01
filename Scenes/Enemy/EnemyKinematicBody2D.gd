@@ -2,20 +2,17 @@ extends KinematicBody2D
 
 
 var velocity = Vector2(1.0, 1.0)
-var MAX_SPEED = 300
+var MAX_SPEED
 var ACCELERATION
 var player_pos
-
-export (NodePath) var visibility_notifier_path
-
 
 
 
 func _ready():
 	randomize()
 	ACCELERATION = randi() % 10 + 5
-	MAX_SPEED = randi() % 201 + 200
-	var _visibility_notifier = get_node(visibility_notifier_path)
+	MAX_SPEED = randi() % 251 + 250
+	var _visibility_notifier = $VisibilityNotifier2D
 	
 
 func player_details(pos):
@@ -42,11 +39,9 @@ func _physics_process(_delta):
 	$EnemySprite.rotation = PI - ang
 	
 	if pow(pow(position.x - player_pos.x, 2) + pow(position.y - player_pos.y, 2), 0.5) > 3:
+# warning-ignore:return_value_discarded
 		move_and_slide(velocity)
 
 
-
-
 func _on_VisibilityNotifier2D_screen_exited():
-	hide()
-	
+	queue_free()
