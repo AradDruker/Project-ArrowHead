@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
 var velocity = Vector2(10.0,10.0)
-const MAX_SPEED = 8
-const ACCELERATION = 30
-const FRICTION = 5
+const MAX_SPEED = 12
+const ACCELERATION = 90
+const FRICTION = 50
+const FRICTION_2 = 40
 
 func _ready():
 	position = Vector2(640.0, 360.0)
@@ -32,10 +33,14 @@ func _physics_process(delta):
 		velocity -= velocity * FRICTION * delta
 	
 	# Player stops instead of circling pointer
-	#var dist = pow(pow(position.x - mouse_pos.x, 2) + pow(position.y - mouse_pos.y, 2), 0.5)
+	var dist = pow(pow(position.x - mouse_pos.x, 2) + pow(position.y - mouse_pos.y, 2), 0.5)
 	#print(dist)
-	#if dist < 55:
-	#	velocity = Vector2.ZERO
+	if dist < 150 and dist >= 50:
+		velocity = velocity * FRICTION * delta
+	elif dist < 50 and dist >= 5:
+		velocity = velocity * FRICTION_2 * delta
+	elif dist < 5:
+		velocity = Vector2.ZERO
 	
 	
 	# Bumps player if hits wall
