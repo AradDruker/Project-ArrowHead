@@ -44,6 +44,7 @@ func _physics_process(delta):
 	if posy <= 37 or posy >= screen_size.y - 37 or posx <= 37 or posx >= screen_size.x - 37:
 		velocity = velocity.rotated(PI/2)
 
+# warning-ignore:return_value_discarded
 	move_and_collide(velocity)
 	
 	# Keeps player in window

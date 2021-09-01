@@ -5,6 +5,7 @@ var velocity = Vector2(1.0, 1.0)
 var MAX_SPEED
 var ACCELERATION
 var player_pos
+# warning-ignore:unused_signal
 signal enemy_collide
 
 
