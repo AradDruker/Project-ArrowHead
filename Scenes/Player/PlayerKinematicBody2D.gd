@@ -41,7 +41,7 @@ func _physics_process(delta):
 	# Bumps player if hits wall
 	var posx = position.x
 	var posy = position.y
-	if posy <= 37 or posy >= screen_size.y - 37 or posx <= 37 or posx >= screen_size.x - 37:
+	if posy <= 49 or posy >= screen_size.y - 49 or posx <= 49 or posx >= screen_size.x - 49:
 		velocity = velocity.rotated(PI/2)
 
 # warning-ignore:return_value_discarded
