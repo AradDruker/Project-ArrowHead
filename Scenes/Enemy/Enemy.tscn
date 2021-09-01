@@ -8,7 +8,7 @@
 radius = 4.21515
 height = 12.9388
 
-[node name="EnemyKinematic" type="KinematicBody2D"]
+[node name="EnemyKinematicBody2D" type="KinematicBody2D"]
 position = Vector2( 0, -0.353546 )
 script = ExtResource( 2 )
 __meta__ = {
