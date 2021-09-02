@@ -45,9 +45,22 @@ func _on_EnemySpawn_timeout():
 		enemy.position.x = enemy_position[0]
 		enemy.position.y = enemy_position[1]
 		$Enemies.add_child(enemy)
+		
+func reset_game():
+	# Reset the game method
+	# Need to reset the score
 	
+	$EnemySpawn.stop()
+	$EnemySpawnInstant.stop()
+	$PlayerKinematicBody2D.position = Vector2(640.0, 360.0)
+	var enemies = $Enemies.get_children()
+	for enemy in enemies:
+		enemy.queue_free()
 	
-	
-	
-	
-	
+	###
+	$EnemySpawn.start()
+	$EnemySpawnInstant.start()
+
+
+func _on_Button_pressed():
+	reset_game()
