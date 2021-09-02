@@ -16,11 +16,9 @@ func _physics_process(_delta):
 func _on_EnemySpawnInstant_timeout():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var my_random_number = rng.randf_range(3,4)
+	var my_random_number = rng.randf_range(4,5)
 	for _i in my_random_number:
-		#$EnemyPath/EnemySpawnLocation.offset = randi()
 		var enemy = Enemy.instance()
-		#enemy.position = $EnemyPath/EnemySpawnLocation.position
 		var size = get_viewport().size
 		var x_pos = randi() % int(size.x) + 30
 		var y_pos = randi() % int(size.y) + 30
@@ -32,7 +30,7 @@ func _on_EnemySpawnInstant_timeout():
 		
 		
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 5):
+	for _i in range(randi() % 5 + 2):
 		var enemy = Enemy.instance()
 		var size = get_viewport().size
 		var x_pos = randi() % int(size.x) + 30
