@@ -47,5 +47,5 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	MOVE = true

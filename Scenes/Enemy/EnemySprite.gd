@@ -1,28 +1,17 @@
 extends Sprite
 
-<<<<<<< Updated upstream
 var enemy_A = preload("res://Assets/Characters/enemy_A.png")
 var enemy_B = preload("res://Assets/Characters/enemy_B.png")
 var enemy_C = preload("res://Assets/Characters/enemy_C.png")
 var enemy_D = preload("res://Assets/Characters/enemy_D.png")
 var enemy_E = preload("res://Assets/Characters/enemy_E.png")
 
-=======
-var enemy_A = preload("res://assets/characters/enemy_A.png")
-var enemy_B = preload("res://assets/characters/enemy_B.png")
-var enemy_C = preload("res://assets/characters/enemy_C.png")
-var enemy_D = preload("res://assets/characters/enemy_D.png")
-var enemy_E = preload("res://assets/characters/enemy_E.png")
-signal spawned
->>>>>>> Stashed changes
-
-
 # Called when the enemy enters the tree
 func _ready():
 	randomize()
 	random_enemy()
 	spawn_animation()
-	emit_signal("spawned")
+	#emit_signal("spawned")
 
 # Chooses random enemy sprite (enemy type)
 func random_enemy():
@@ -31,8 +20,5 @@ func random_enemy():
 	self.texture = (name)
 
 func spawn_animation():
-	get_parent().get_node("AnimationPlayer").play("spawn")
-	
-	
-	
-	
+# warning-ignore:return_value_discarded
+	get_parent().get_node("AnimationPlayer")

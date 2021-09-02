@@ -6,12 +6,12 @@ const ACCELERATION = 90
 const FRICTION = 50
 const FRICTION_2 = 40
 
+
 func _ready():
 	position = Vector2(640.0, 360.0)
 
 func _physics_process(delta):
-	# Movement process / Input process
-	var screen_size = get_viewport_rect().size
+	#var screen_size = get_viewport_rect().size
 	
 	# Input Collection
 	var input_vector = Vector2(position.x, position.y)
@@ -29,12 +29,11 @@ func _physics_process(delta):
 		$PlayerSprite.rotation = PI - ang
 	
 	#Player stops
-	else:
-		velocity -= velocity * FRICTION * delta
+	#else:
+	#	velocity -= velocity * FRICTION * delta
 	
-	# Player stops instead of circling pointer
+	# Player slow to stop
 	var dist = pow(pow(position.x - mouse_pos.x, 2) + pow(position.y - mouse_pos.y, 2), 0.5)
-	#print(dist)
 	if dist < 150 and dist >= 50:
 		velocity = velocity * FRICTION * delta
 	elif dist < 50 and dist >= 5:
@@ -44,15 +43,6 @@ func _physics_process(delta):
 	
 	
 	# Bumps player if hits wall
-	var posx = position.x
-	var posy = position.y
-	if posy <= 49 or posy >= screen_size.y - 49 or posx <= 49 or posx >= screen_size.x - 49:
-		velocity = velocity.rotated(PI/2)
-
-# warning-ignore:return_value_discarded
-	move_and_collide(velocity)
-	
-	# Keeps player in window
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
-
+	var collision = move_and_collide(velocity)
+	if collision:
+		velocity = velocity.bounce(collision.normal)
