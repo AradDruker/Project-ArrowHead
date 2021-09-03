@@ -14,12 +14,13 @@ func _ready():
 	randomize()
 	ACCELERATION = randi() % 10 + 5
 	MAX_SPEED = randi() % 251 + 250
-	var _visibility_notifier = $VisibilityNotifier2D
+	$AnimationPlayer.play("Spawn")
+	
 
 func player_details(pos):
 	player_pos = pos
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if MOVE:
 		# Mouse position for enemy to focus on
 		
@@ -39,13 +40,19 @@ func _physics_process(_delta):
 		
 		if pow(pow(position.x - player_pos.x, 2) + pow(position.y - player_pos.y, 2), 0.5) > 3:
 	# warning-ignore:return_value_discarded
-			if move_and_slide(velocity):
-				pass
+			if move_and_collide(velocity * delta):
+				explode()
+
+func explode():
+	MOVE = false
+	$AnimationPlayer.play("Explosion")
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 
-
-func _on_AnimationPlayer_animation_finished(_anim_name):
-	MOVE = true
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Spawn":
+		MOVE = true
+	if anim_name == "Explosion":
+		queue_free()
