@@ -23,7 +23,12 @@ func _physics_process(_delta):
 	for en in enemies:
 		if en:
 			en.player_details($PlayerKinematicBody2D.position)
+			
+func _process(delta):
 	
+	# Lets you exit the game with the escape key - Mainly for debugging comfort
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
