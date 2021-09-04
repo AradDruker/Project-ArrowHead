@@ -39,9 +39,17 @@ func _physics_process(delta):
 		$EnemySprite.rotation = PI - ang
 		
 		if pow(pow(position.x - player_pos.x, 2) + pow(position.y - player_pos.y, 2), 0.5) > 3:
-	# warning-ignore:return_value_discarded
-			if move_and_collide(velocity * delta):
-				explode()
+			
+			var enemy_collided = move_and_collide(velocity * delta)
+			if enemy_collided:
+				
+				#Hold the object the enemy collided with
+				var collided_shape = enemy_collided.get_collider_shape()
+				# This if will only happen if the enemy collided with the border
+				# as the borders has now collision shape
+				if collided_shape == null:
+					explode()
+			
 
 func explode():
 	MOVE = false
