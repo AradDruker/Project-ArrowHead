@@ -2,6 +2,8 @@ extends Node
 
 export (PackedScene) var Enemy
 
+var score = 0
+
 func _ready():
 	randomize()
 
@@ -37,6 +39,7 @@ func _on_EnemySpawnInstant_timeout():
 	var my_random_number = rng.randf_range(4,5)
 	for _i in my_random_number:
 		var enemy = Enemy.instance()
+		enemy.connect("exploded", self, "_add_score" )
 		var enemy_pos = calc_position()
 		enemy.position.x = enemy_pos[0]
 		enemy.position.y = enemy_pos[1]
@@ -46,6 +49,7 @@ func _on_EnemySpawnInstant_timeout():
 func _on_EnemySpawn_timeout():
 	for _i in range(randi() % 5 + 2):
 		var enemy = Enemy.instance()
+		enemy.connect("exploded", self, "_add_score" )
 		var enemy_position = calc_position()
 		enemy.position.x = enemy_position[0]
 		enemy.position.y = enemy_position[1]
@@ -69,3 +73,7 @@ func reset_game():
 
 func _on_Button_pressed():
 	reset_game()
+
+func _add_score():
+	score += 1
+	print(score)

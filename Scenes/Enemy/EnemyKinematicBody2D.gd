@@ -8,6 +8,7 @@ var player_pos
 # warning-ignore:unused_signal
 signal enemy_collide
 var MOVE = false
+signal exploded
 
 
 func _ready():
@@ -49,6 +50,7 @@ func _physics_process(delta):
 				# as the borders has now collision shape
 				if collided_shape == null:
 					explode()
+					emit_signal("exploded")
 			
 
 func explode():
