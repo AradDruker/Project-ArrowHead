@@ -5,7 +5,7 @@ export (PackedScene) var Enemy
 func _ready():
 	randomize()
 
-func calc_position(ratio):
+func calc_position():
 	# Get the number of slice to slice the screen
 	# Exmaple: Input 3 returns a random place within the 1/3 to 2/3 of the border
 	# Generates a random position within 1/3 to 2/3 of the screen
@@ -24,7 +24,7 @@ func _physics_process(_delta):
 		if en:
 			en.player_details($PlayerKinematicBody2D.position)
 			
-func _process(delta):
+func _process(_delta):
 	
 	# Lets you exit the game with the escape key - Mainly for debugging comfort
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -37,7 +37,7 @@ func _on_EnemySpawnInstant_timeout():
 	var my_random_number = rng.randf_range(4,5)
 	for _i in my_random_number:
 		var enemy = Enemy.instance()
-		var enemy_pos = calc_position(0.5)
+		var enemy_pos = calc_position()
 		enemy.position.x = enemy_pos[0]
 		enemy.position.y = enemy_pos[1]
 		$Enemies.add_child(enemy)
@@ -46,7 +46,7 @@ func _on_EnemySpawnInstant_timeout():
 func _on_EnemySpawn_timeout():
 	for _i in range(randi() % 5 + 2):
 		var enemy = Enemy.instance()
-		var enemy_position = calc_position(0.5)
+		var enemy_position = calc_position()
 		enemy.position.x = enemy_position[0]
 		enemy.position.y = enemy_position[1]
 		$Enemies.add_child(enemy)
