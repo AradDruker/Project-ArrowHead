@@ -10,15 +10,9 @@ var enemy_E = preload("res://Assets/Characters/enemy_E.png")
 func _ready():
 	randomize()
 	random_enemy()
-	spawn_animation()
-	#emit_signal("spawned")
 
 # Chooses random enemy sprite (enemy type)
 func random_enemy():
 	var enemy_images = [enemy_A, enemy_B, enemy_C, enemy_D, enemy_E]
 	var name = enemy_images[randi() % enemy_images.size()]
 	self.texture = (name)
-
-func spawn_animation():
-# warning-ignore:return_value_discarded
-	get_parent().get_node("AnimationPlayer")
