@@ -9,7 +9,7 @@ var player_pos
 signal enemy_collide
 var MOVE = false
 signal exploded
-
+signal game_over
 
 func _ready():
 	randomize()
@@ -51,6 +51,9 @@ func _physics_process(delta):
 				if collided_shape == null:
 					explode()
 					emit_signal("exploded")
+				else:
+					if "KinematicBody2D" in collided_shape.get_parent():
+						emit_signal("game_over")
 			
 
 func explode():

@@ -8,6 +8,7 @@ func _ready():
 	randomize()
 # warning-ignore:return_value_discarded
 	$HUD.connect("ResetGame", self,"reset_game")
+	$GameOverScreen.hide()
 
 func calc_position():
 	# Get the number of slice to slice the screen
@@ -48,6 +49,7 @@ func _on_EnemySpawnInstant_timeout():
 	for _i in my_random_number:
 		var enemy = Enemy.instance()
 		enemy.connect("exploded", self, "_add_score" )
+		enemy.connect("game_over", self, "_game_over")
 		var enemy_pos = calc_position()
 		enemy.position.x = enemy_pos[0]
 		enemy.position.y = enemy_pos[1]
@@ -82,6 +84,5 @@ func reset_game():
 func _add_score():
 	score += 100
 
-
-func _on_FadeOut_fade_finished():
-	pass # Replace with function body.
+func _game_over():
+	pass
