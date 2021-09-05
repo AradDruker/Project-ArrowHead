@@ -8,13 +8,12 @@ func _ready():
 	randomize()
 # warning-ignore:return_value_discarded
 	$HUD.connect("ResetGame", self,"reset_game")
-	$GameOverScreen.hide()
 	#get_tree().paused = true
 	$FadeOut.show()
 	$FadeOut.fade_out()
 	
 
-func calc_position():
+func create_enemy():
 	# Get the number of slice to slice the screen
 	# Exmaple: Input 3 returns a random place within the 1/3 to 2/3 of the border
 	# Generates a random position within 1/3 to 2/3 of the screen
@@ -24,8 +23,12 @@ func calc_position():
 	var y_pos = randi() % int(size.y)
 	x_pos = clamp(x_pos, 100, size.x - 100)
 	y_pos = clamp(y_pos, 100, size.y - 100)
-	
-	return [x_pos, y_pos]
+	var enemy = Enemy.instance()
+	enemy.connect("exploded", self, "_add_score" )
+	enemy.connect("game_over", self, "_game_over")
+	enemy.position.x = x_pos
+	enemy.position.y = y_pos
+	return enemy
 
 func _physics_process(delta):
 	var enemies = $Enemies.get_children()
@@ -51,22 +54,13 @@ func _on_EnemySpawnInstant_timeout():
 	rng.randomize()
 	var my_random_number = rng.randf_range(4,5)
 	for _i in my_random_number:
-		var enemy = Enemy.instance()
-		enemy.connect("exploded", self, "_add_score" )
-		enemy.connect("game_over", self, "_game_over")
-		var enemy_pos = calc_position()
-		enemy.position.x = enemy_pos[0]
-		enemy.position.y = enemy_pos[1]
+		var enemy = create_enemy()
 		$Enemies.add_child(enemy)
 		
 		
 func _on_EnemySpawn_timeout():
 	for _i in range(randi() % 5 + 3):
-		var enemy = Enemy.instance()
-		enemy.connect("exploded", self, "_add_score" )
-		var enemy_position = calc_position()
-		enemy.position.x = enemy_position[0]
-		enemy.position.y = enemy_position[1]
+		var enemy = create_enemy()
 		$Enemies.add_child(enemy)
 		
 func reset_game():

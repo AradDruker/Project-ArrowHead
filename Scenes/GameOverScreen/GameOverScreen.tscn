@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Fonts/dynamicfont_1.tres" type="DynamicFont" id=1]
+
+[sub_resource type="DynamicFontData" id=4]
+font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
+
+[sub_resource type="DynamicFont" id=5]
+size = 120
+font_data = SubResource( 4 )
+
+[node name="GameOverScreen" type="CanvasLayer"]
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 120.0
+margin_top = 80.0
+margin_right = 1160.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="Menu"]
+margin_right = 1040.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Game Over"
+align = 1
+
+[node name="Details" type="VBoxContainer" parent="Menu"]
+margin_left = 280.0
+margin_top = 100.0
+margin_right = 1080.0
+margin_bottom = 521.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Score" type="Label" parent="Menu/Details"]
+margin_top = 99.0
+margin_right = 800.0
+margin_bottom = 156.0
+custom_fonts/font = ExtResource( 1 )
+text = "score:"
+
+[node name="RestartButton" type="Button" parent="Menu/Details"]
+margin_top = 176.0
+margin_right = 800.0
+margin_bottom = 239.0
+custom_fonts/font = ExtResource( 1 )
+text = "Restart Game"
+flat = true
+align = 0
+
+[node name="MainMenu" type="Button" parent="Menu/Details"]
+margin_top = 259.0
+margin_right = 800.0
+margin_bottom = 322.0
+custom_fonts/font = ExtResource( 1 )
+text = "Main Menu"
+flat = true
+align = 0
