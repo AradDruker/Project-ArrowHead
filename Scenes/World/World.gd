@@ -6,6 +6,8 @@ var score = 0
 
 func _ready():
 	randomize()
+# warning-ignore:return_value_discarded
+	$HUD.connect("ResetGame", self,"reset_game")
 
 func calc_position():
 	# Get the number of slice to slice the screen
@@ -20,8 +22,14 @@ func calc_position():
 	
 	return [x_pos, y_pos]
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	var enemies = $Enemies.get_children()
+	
+	#Increse score every second
+	score += delta * 30
+	#Score UI
+	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
+	
 	for en in enemies:
 		if en:
 			en.player_details($PlayerKinematicBody2D.position)
@@ -31,7 +39,7 @@ func _process(_delta):
 	# Lets you exit the game with the escape key - Mainly for debugging comfort
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	
+
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	var rng = RandomNumberGenerator.new()
@@ -47,7 +55,7 @@ func _on_EnemySpawnInstant_timeout():
 		
 		
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 5 + 2):
+	for _i in range(randi() % 5 + 3):
 		var enemy = Enemy.instance()
 		enemy.connect("exploded", self, "_add_score" )
 		var enemy_position = calc_position()
@@ -63,6 +71,7 @@ func reset_game():
 	$EnemySpawnInstant.stop()
 	$PlayerKinematicBody2D.position = Vector2(640.0, 360.0)
 	var enemies = $Enemies.get_children()
+	score = 0
 	for enemy in enemies:
 		enemy.queue_free()
 	
@@ -70,10 +79,9 @@ func reset_game():
 	$EnemySpawn.start()
 	$EnemySpawnInstant.start()
 
-
-func _on_Button_pressed():
-	reset_game()
-
 func _add_score():
-	score += 1
-	print(score)
+	score += 100
+
+
+func _on_FadeOut_fade_finished():
+	pass # Replace with function body.

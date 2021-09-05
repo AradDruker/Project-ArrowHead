@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/World/World.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Background/Space.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Tilesheets/platformIndustrial_sheet@2.png" type="Texture" id=5]
-[ext_resource path="res://Assets/icons/update-arrow.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/HUD/HUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -53,6 +53,8 @@ show_collision = true
 format = 1
 tile_data = PoolIntArray( -65538, 1610612736, 0, -131070, 1610612736, 0, -131066, 1610612736, 0, -131062, 1610612736, 0, -131058, 1610612736, 0, -131054, 1610612736, 0, -131050, 1610612736, 0, -131046, 1610612736, 0, -131042, 1610612736, 0, -131038, 1610612736, 0, -131034, 1610612736, 0, -131030, 1610612736, 0, -131026, 1610612736, 0, -131022, 1610612736, 0, -131018, 1610612736, 0, -131014, 1610612736, 0, -131010, 1610612736, 0, -131006, 1610612736, 0, -131002, 1610612736, 0, -130998, 1610612736, 0, -130994, 1610612736, 0, 196606, -1610612736, 0, 131150, -1073741824, 0, 196686, -1073741824, 0, 458750, -1610612736, 0, 458830, -1073741824, 0, 720894, -1610612736, 0, 720974, -1073741824, 0, 983038, -1610612736, 0, 983118, -1073741824, 0, 1245182, -1610612736, 0, 1245262, -1073741824, 0, 1507326, -1610612736, 0, 1507406, -1073741824, 0, 1769470, -1610612736, 0, 1769550, -1073741824, 0, 2031614, -1610612736, 0, 2031694, -1073741824, 0, 2293758, -1610612736, 0, 2293838, -1073741824, 0, 2555902, -1610612736, 0, 2555982, -1073741824, 0, 2818046, -1610612736, 0, 2883582, 0, 0, 2818048, 0, 0, 2818052, 0, 0, 2818056, 0, 0, 2818060, 0, 0, 2818064, 0, 0, 2818068, 0, 0, 2818072, 0, 0, 2818076, 0, 0, 2818080, 0, 0, 2818084, 0, 0, 2818088, 0, 0, 2818092, 0, 0, 2818096, 0, 0, 2818100, 0, 0, 2818104, 0, 0, 2818108, 0, 0, 2818112, 0, 0, 2818116, 0, 0, 2818120, 0, 0, 2818124, 0, 0, 2818126, 0, 0 )
 
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+
 [node name="PlayerKinematicBody2D" parent="." instance=ExtResource( 1 )]
 z_index = 1
 
@@ -67,20 +69,5 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Node" type="Node" parent="."]
-
-[node name="Button" type="Button" parent="Node"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -79.2175
-margin_top = 33.8541
-margin_right = -35.2175
-margin_bottom = 71.8541
-icon = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
-[connection signal="pressed" from="Node/Button" to="." method="_on_Button_pressed"]
