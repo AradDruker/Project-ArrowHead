@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/World/World.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Background/Space.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Tilesheets/platformIndustrial_sheet@2.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/World/FadeOut.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/HUD/HUD.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -39,6 +40,22 @@ font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 [sub_resource type="DynamicFont" id=4]
 size = 120
 font_data = SubResource( 3 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
 
 [node name="World" type="Node"]
 script = ExtResource( 3 )
@@ -99,5 +116,19 @@ custom_constants/shadow_offset_y = 5
 text = "GAME OVER"
 align = 1
 
+[node name="FadeOut" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeOut"]
+anims/fade_out = SubResource( 5 )
+
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
+[connection signal="animation_finished" from="FadeOut/AnimationPlayer" to="FadeOut" method="_on_AnimationPlayer_animation_finished"]

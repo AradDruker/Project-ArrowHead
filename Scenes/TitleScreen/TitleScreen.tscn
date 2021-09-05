@@ -78,24 +78,24 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 1 )]
-margin_top = 71.0
+margin_top = 41.0
 margin_right = 290.0
-margin_bottom = 131.0
-rect_min_size = Vector2( 290, 60 )
+margin_bottom = 121.0
+rect_min_size = Vector2( 290, 80 )
 size_flags_horizontal = 0
 
 [node name="LeaderboardsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
-margin_top = 151.0
+margin_top = 141.0
 margin_right = 370.0
-margin_bottom = 211.0
-rect_min_size = Vector2( 370, 60 )
+margin_bottom = 221.0
+rect_min_size = Vector2( 370, 80 )
 size_flags_horizontal = 0
 
 [node name="OptionsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
-margin_top = 231.0
+margin_top = 241.0
 margin_right = 215.0
-margin_bottom = 291.0
-rect_min_size = Vector2( 215, 60 )
+margin_bottom = 321.0
+rect_min_size = Vector2( 215, 80 )
 size_flags_horizontal = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
@@ -125,7 +125,7 @@ align = 2
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0, 0, 0, 0 )
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -134,11 +134,5 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FadeIn"]
 anims/fade_in = SubResource( 4 )
 
-[connection signal="mouse_entered" from="Menu/CenterRow/Buttons/NewGameButton" to="." method="_on_NewGameButton_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/CenterRow/Buttons/NewGameButton" to="." method="_on_NewGameButton_mouse_exited"]
-[connection signal="mouse_entered" from="Menu/CenterRow/Buttons/LeaderboardsButton" to="." method="_on_LeaderboardsButton_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/CenterRow/Buttons/LeaderboardsButton" to="." method="_on_LeaderboardsButton_mouse_exited"]
-[connection signal="mouse_entered" from="Menu/CenterRow/Buttons/OptionsButton" to="." method="_on_OptionsButton_mouse_entered"]
-[connection signal="mouse_exited" from="Menu/CenterRow/Buttons/OptionsButton" to="." method="_on_OptionsButton_mouse_exited"]
 [connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]
 [connection signal="animation_finished" from="FadeIn/AnimationPlayer" to="FadeIn" method="_on_AnimationPlayer_animation_finished"]

@@ -9,6 +9,10 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$HUD.connect("ResetGame", self,"reset_game")
 	$GameOverScreen.hide()
+	#get_tree().paused = true
+	$FadeOut.show()
+	$FadeOut.fade_out()
+	
 
 func calc_position():
 	# Get the number of slice to slice the screen
