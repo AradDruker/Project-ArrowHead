@@ -5,8 +5,9 @@
 [ext_resource path="res://Scenes/World/World.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Background/Space.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Tilesheets/platformIndustrial_sheet@2.png" type="Texture" id=5]
-[ext_resource path="res://Scenes/World/FadeOut.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/GameOverScreen/GameOverScreen.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/HUD/HUD.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PauseMenu/PausedMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -34,22 +35,6 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 } ]
 0/z_index = 0
 
-[sub_resource type="Animation" id=3]
-resource_name = "fade_out"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
 [node name="World" type="Node"]
 script = ExtResource( 3 )
 Enemy = ExtResource( 2 )
@@ -66,7 +51,6 @@ __meta__ = {
 [node name="Borders" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
 cell_size = Vector2( 16, 16 )
-show_collision = true
 format = 1
 tile_data = PoolIntArray( -65538, 1610612736, 0, -131070, 1610612736, 0, -131066, 1610612736, 0, -131062, 1610612736, 0, -131058, 1610612736, 0, -131054, 1610612736, 0, -131050, 1610612736, 0, -131046, 1610612736, 0, -131042, 1610612736, 0, -131038, 1610612736, 0, -131034, 1610612736, 0, -131030, 1610612736, 0, -131026, 1610612736, 0, -131022, 1610612736, 0, -131018, 1610612736, 0, -131014, 1610612736, 0, -131010, 1610612736, 0, -131006, 1610612736, 0, -131002, 1610612736, 0, -130998, 1610612736, 0, -130994, 1610612736, 0, 196606, -1610612736, 0, 131150, -1073741824, 0, 196686, -1073741824, 0, 458750, -1610612736, 0, 458830, -1073741824, 0, 720894, -1610612736, 0, 720974, -1073741824, 0, 983038, -1610612736, 0, 983118, -1073741824, 0, 1245182, -1610612736, 0, 1245262, -1073741824, 0, 1507326, -1610612736, 0, 1507406, -1073741824, 0, 1769470, -1610612736, 0, 1769550, -1073741824, 0, 2031614, -1610612736, 0, 2031694, -1073741824, 0, 2293758, -1610612736, 0, 2293838, -1073741824, 0, 2555902, -1610612736, 0, 2555982, -1073741824, 0, 2818046, -1610612736, 0, 2883582, 0, 0, 2818048, 0, 0, 2818052, 0, 0, 2818056, 0, 0, 2818060, 0, 0, 2818064, 0, 0, 2818068, 0, 0, 2818072, 0, 0, 2818076, 0, 0, 2818080, 0, 0, 2818084, 0, 0, 2818088, 0, 0, 2818092, 0, 0, 2818096, 0, 0, 2818100, 0, 0, 2818104, 0, 0, 2818108, 0, 0, 2818112, 0, 0, 2818116, 0, 0, 2818120, 0, 0, 2818124, 0, 0, 2818126, 0, 0 )
 
@@ -82,23 +66,14 @@ wait_time = 2.5
 autostart = true
 
 [node name="EnemySpawnInstant" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="FadeOut" type="ColorRect" parent="."]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PausedMenu" parent="." instance=ExtResource( 8 )]
+pause_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeOut"]
-anims/fade_out = SubResource( 3 )
+[node name="GameOverScreen" parent="." instance=ExtResource( 6 )]
 
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
-[connection signal="animation_finished" from="FadeOut/AnimationPlayer" to="FadeOut" method="_on_AnimationPlayer_animation_finished"]

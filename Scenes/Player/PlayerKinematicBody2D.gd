@@ -6,6 +6,7 @@ const ACCELERATION = 90
 const FRICTION = 50
 const FRICTION_2 = 40
 
+signal game_over
 
 func _ready():
 	position = Vector2(640.0, 360.0)
@@ -46,3 +47,10 @@ func _physics_process(delta):
 	var collision = move_and_collide(velocity)
 	if collision:
 		velocity = velocity.bounce(collision.normal)
+		var collided_shape = collision.get_collider_shape()
+		if collided_shape == null:
+			pass
+		else:
+			emit_signal("game_over")
+	
+

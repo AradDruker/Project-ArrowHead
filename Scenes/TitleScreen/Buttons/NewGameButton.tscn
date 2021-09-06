@@ -6,4 +6,5 @@
 scene_to_load = "res://Scenes/World/World.tscn"
 
 [node name="Label" parent="." index="0"]
+custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
 text = "New Game"

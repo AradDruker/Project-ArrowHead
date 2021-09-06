@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Enemy/EnemyKinematicBody2D.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Enemy/EnemySprite.gd" type="Script" id=3]
@@ -7,11 +7,10 @@
 [ext_resource path="res://Assets/Effects/Explode/explode_6.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Effects/Explode/explode_4.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Effects/Explode/explode_2.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Enemy/AnimationPlayer.gd" type="Script" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.21515
-height = 12.9388
+height = 3.73044
 
 [sub_resource type="Animation" id=2]
 resource_name = "Explosion"
@@ -66,7 +65,7 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 4.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false ]
 }
 
@@ -95,7 +94,6 @@ disabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Explosion = SubResource( 2 )
 anims/Spawn = SubResource( 3 )
-script = ExtResource( 10 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

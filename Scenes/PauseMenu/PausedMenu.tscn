@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Fonts/dynamicfont_1.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Scenes/GameOverScreen/GameOverScreen.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PauseMenu/PausedMenu.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
@@ -10,14 +10,23 @@ font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 size = 120
 font_data = SubResource( 1 )
 
-[node name="GameOverScreen" type="CanvasLayer"]
-pause_mode = 2
+[node name="PausedMenu" type="CanvasLayer"]
 script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.666667 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Popup" type="Popup" parent="."]
 pause_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -38,7 +47,7 @@ custom_fonts/font = SubResource( 2 )
 custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 5
-text = "Game Over"
+text = "Paused"
 align = 1
 
 [node name="Details" type="VBoxContainer" parent="Popup/Menu"]
@@ -50,18 +59,20 @@ size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
-[node name="Score" type="Label" parent="Popup/Menu/Details"]
-margin_top = 99.0
+[node name="Continue" type="Button" parent="Popup/Menu/Details"]
+margin_top = 96.0
 margin_right = 1040.0
-margin_bottom = 156.0
+margin_bottom = 159.0
+focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
-text = "score:"
-align = 1
+enabled_focus_mode = 0
+text = "Continue"
+flat = true
 
 [node name="RestartButton" type="Button" parent="Popup/Menu/Details"]
-margin_top = 176.0
+margin_top = 179.0
 margin_right = 1040.0
-margin_bottom = 239.0
+margin_bottom = 242.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
@@ -69,14 +80,15 @@ text = "Restart Game"
 flat = true
 
 [node name="MainMenu" type="Button" parent="Popup/Menu/Details"]
-margin_top = 259.0
+margin_top = 262.0
 margin_right = 1040.0
-margin_bottom = 322.0
+margin_bottom = 325.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "Main Menu"
 flat = true
 
+[connection signal="pressed" from="Popup/Menu/Details/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Popup/Menu/Details/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="Popup/Menu/Details/MainMenu" to="." method="_on_MainMenu_pressed"]

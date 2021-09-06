@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-
 var velocity = Vector2(1.0, 1.0)
 var MAX_SPEED
 var ACCELERATION
@@ -9,7 +8,6 @@ var player_pos
 signal enemy_collide
 var MOVE = false
 signal exploded
-signal game_over
 
 func _ready():
 	randomize()
@@ -31,8 +29,7 @@ func _physics_process(delta):
 		v = v.direction_to(Vector2(player_pos))
 		velocity +=  v * ACCELERATION
 		velocity = velocity.clamped(MAX_SPEED)
-		
-		
+
 		
 		
 		# Making ship point to the destination
@@ -46,14 +43,12 @@ func _physics_process(delta):
 				
 				#Hold the object the enemy collided with
 				var collided_shape = enemy_collided.get_collider_shape()
-				# This if will only happen if the enemy collided with the border
+				# This will only happen if the enemy collided with the border
 				# as the borders has now collision shape
 				if collided_shape == null:
 					explode()
 					emit_signal("exploded")
-				else:
-					if "KinematicBody2D" in collided_shape.get_parent():
-						emit_signal("game_over")
+
 			
 
 func explode():
