@@ -3,6 +3,8 @@
 [ext_resource path="res://Scenes/TitleScreen/Buttons/MenuButton.tscn" type="PackedScene" id=1]
 
 [node name="LeaderboardsButton" instance=ExtResource( 1 )]
+margin_top = 300.0
+margin_bottom = 360.0
 scene_to_load = "res://Scenes/Leaderboards/Leaderboards.tscn"
 
 [node name="Label" parent="." index="0"]

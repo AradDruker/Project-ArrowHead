@@ -2,6 +2,7 @@ extends Control
 
 
 func _ready():
+	get_tree().paused = false
 	for button in $Menu/CenterRow/Buttons.get_children():
 		button.connect("pressed", self, "_on_Button_pressed", [button.scene_to_load])
 		

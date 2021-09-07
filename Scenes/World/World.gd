@@ -111,7 +111,6 @@ func _game_over():
 
 
 func _return_title():
-	get_tree().paused = false
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/TitleScreen/TitleScreen.tscn")
 
