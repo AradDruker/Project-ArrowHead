@@ -8,14 +8,14 @@
 [ext_resource path="res://Assets/Effects/Explode/explode_4.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Effects/Explode/explode_2.png" type="Texture" id=8]
 
-[sub_resource type="CapsuleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=7]
 radius = 4.21515
 height = 3.73044
 
 [sub_resource type="Animation" id=2]
 resource_name = "Explosion"
-length = 0.8
-step = 0.2
+length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("EnemySprite:texture")
 tracks/0/interp = 1
@@ -82,13 +82,13 @@ position = Vector2( -0.101872, -7.3292 )
 scale = Vector2( 0.444103, 0.8894 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.639216, 0.639216, 0 )
+modulate = Color( 1, 1, 1, 0 )
 scale = Vector2( 0.7, 0.7 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 7 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

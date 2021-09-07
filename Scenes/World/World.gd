@@ -3,9 +3,15 @@ extends Node
 export (PackedScene) var Enemy
 
 var score = 0
+var highScore = 0
+var save_path = "user://data.save"
+var highscore_been_called = false
+
+
 
 func _ready():
 	randomize()
+	load_file()
 
 	### Signals for buttons
 # warning-ignore:return_value_discarded
@@ -46,7 +52,13 @@ func _physics_process(delta):
 	
 	#Increse score every second
 	score += delta * 30
-	
+	if highScore < score:
+		highScore = score
+		save(highScore)
+		if !highscore_been_called:
+			$HUD/AnimationPlayer.play("show_HighScore")
+			highscore_been_called = true
+#
 	#Score UI
 	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
 	$GameOverScreen/Popup/Menu/Details/Score.text = "Score: " + str(int(score))
@@ -54,13 +66,17 @@ func _physics_process(delta):
 	for en in enemies:
 		if en:
 			en.player_details($PlayerKinematicBody2D.position)
-			
+
+
+
 func _process(_delta):
 	
 	# Lets you exit the game with the escape key - Mainly for debugging comfort
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
+	
+	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	var rng = RandomNumberGenerator.new()
@@ -125,4 +141,18 @@ func _paused_menu_pop_close():
 	$PausedMenu/Popup.hide()
 	$PausedMenu/Background.hide()
 	get_tree().paused = false
+
+
+func save(_high_score):
+	var file = File.new()
+	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
+	file.store_var(highScore)
+	file.close()
 	
+	
+func load_file():
+	var file = File.new()
+	if file.file_exists(save_path):
+		file.open_encrypted_with_pass(save_path, File.READ, "Porfpo12")
+		highScore = file.get_var()
+		file.close()

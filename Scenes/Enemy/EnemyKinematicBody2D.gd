@@ -4,6 +4,7 @@ var velocity = Vector2(1.0, 1.0)
 var MAX_SPEED
 var ACCELERATION
 var player_pos
+var enemy_pos
 # warning-ignore:unused_signal
 signal enemy_collide
 var MOVE = false
@@ -46,6 +47,7 @@ func _physics_process(delta):
 				# This will only happen if the enemy collided with the border
 				# as the borders has now collision shape
 				if collided_shape == null:
+					enemy_pos = get_position()
 					explode()
 					emit_signal("exploded")
 
