@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Audio/SkyFire (Title Screen).ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Audio/forceField_000.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Audio/explosionCrunch_000.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/bong_001.ogg" type="AudioStream" id=4]
+
+[node name="Music" type="Node"]
+pause_mode = 2
+
+[node name="BackgoundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 1 )
+volume_db = -40.0
+autoplay = true
+bus = "Backgroud"
+
+[node name="BorderBump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -40.0
+bus = "SFX"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -40.0
+bus = "SFX"
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -25.0
+bus = "SFX"

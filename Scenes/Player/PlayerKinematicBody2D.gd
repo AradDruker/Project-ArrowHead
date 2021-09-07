@@ -49,7 +49,7 @@ func _physics_process(delta):
 		velocity = velocity.bounce(collision.normal)
 		var collided_shape = collision.get_collider_shape()
 		if collided_shape == null:
-			pass
+			Music.get_node("BorderBump").play()
 		else:
 			emit_signal("game_over")
 	

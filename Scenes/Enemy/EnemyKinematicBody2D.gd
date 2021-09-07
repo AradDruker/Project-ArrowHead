@@ -56,6 +56,7 @@ func _physics_process(delta):
 func explode():
 	MOVE = false
 	$AnimationPlayer.play("Explosion")
+	Music.get_node("Explosion").play()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
