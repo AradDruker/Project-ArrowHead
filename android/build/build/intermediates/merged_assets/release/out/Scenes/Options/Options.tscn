@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Fonts/dynamicfont_2.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Options/Options.gd" type="Script" id=3]
+[ext_resource path="res://Assets/icons/checkmark.png" type="Texture" id=4]
+[ext_resource path="res://Assets/icons/checkmark (1).png" type="Texture" id=5]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 75
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[node name="Options" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 120.0
+margin_top = 80.0
+margin_right = 1160.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Menu"]
+margin_right = 1040.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
+custom_constants/shadow_offset_y = 5
+text = "Options"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="Menu"]
+margin_top = 139.0
+margin_right = 1040.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 0, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_top = 193.0
+margin_right = 1040.0
+margin_bottom = 553.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
+margin_left = 390.0
+margin_right = 650.0
+margin_bottom = 360.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MuteMusic" type="CheckBox" parent="Menu/CenterRow/Buttons"]
+margin_right = 260.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+focus_mode = 0
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "   Music"
+align = 1
+
+[node name="MuteSFX" type="CheckBox" parent="Menu/CenterRow/Buttons"]
+margin_top = 104.0
+margin_right = 260.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 0, 100 )
+focus_mode = 0
+custom_icons/checked = ExtResource( 4 )
+custom_icons/unchecked = ExtResource( 5 )
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "SFX"
+align = 1
+
+[node name="Spacer" type="Label" parent="Menu/CenterRow/Buttons"]
+margin_top = 208.0
+margin_right = 260.0
+margin_bottom = 258.0
+rect_min_size = Vector2( 0, 50 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Menu/CenterRow/Buttons"]
+margin_top = 262.0
+margin_right = 260.0
+margin_bottom = 360.0
+focus_mode = 0
+custom_fonts/font = SubResource( 3 )
+enabled_focus_mode = 0
+text = "Back"
+flat = true
+
+[connection signal="pressed" from="Menu/CenterRow/Buttons/MuteMusic" to="." method="_on_MuteMusic_pressed"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/MuteSFX" to="." method="_on_MuteSFX_pressed"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/Back" to="." method="_on_Back_pressed"]

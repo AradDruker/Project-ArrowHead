@@ -1,0 +1,107 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Fonts/dynamicfont_1.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scenes/GameOverScreen/GameOverScreen.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 120
+font_data = SubResource( 1 )
+
+[node name="GameOverScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 2 )
+
+[node name="Popup" type="Popup" parent="."]
+pause_mode = 2
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="Popup"]
+margin_left = 120.0
+margin_top = 80.0
+margin_right = 1160.0
+margin_bottom = 640.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="Popup/Menu"]
+margin_right = 1040.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 5
+text = "Game Over"
+align = 1
+
+[node name="Spacer" type="Label" parent="Popup/Menu"]
+margin_top = 139.0
+margin_right = 1040.0
+margin_bottom = 153.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details" type="VBoxContainer" parent="Popup/Menu"]
+margin_top = 157.0
+margin_right = 1040.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Score" type="Label" parent="Popup/Menu/Details"]
+margin_top = 56.0
+margin_right = 1040.0
+margin_bottom = 113.0
+custom_fonts/font = ExtResource( 1 )
+text = "score:"
+align = 1
+
+[node name="Spacer2" type="Label" parent="Popup/Menu/Details"]
+margin_top = 133.0
+margin_right = 1040.0
+margin_bottom = 147.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="Popup/Menu/Details"]
+margin_top = 167.0
+margin_right = 1040.0
+margin_bottom = 230.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "Restart Game"
+flat = true
+
+[node name="Spacer" type="Label" parent="Popup/Menu/Details"]
+margin_top = 250.0
+margin_right = 1040.0
+margin_bottom = 264.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="Popup/Menu/Details"]
+margin_top = 284.0
+margin_right = 1040.0
+margin_bottom = 347.0
+focus_mode = 0
+custom_fonts/font = ExtResource( 1 )
+enabled_focus_mode = 0
+text = "Main Menu"
+flat = true
+
+[connection signal="pressed" from="Popup/Menu/Details/RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Popup/Menu/Details/MainMenu" to="." method="_on_MainMenu_pressed"]
