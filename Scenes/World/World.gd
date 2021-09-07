@@ -6,7 +6,8 @@ var score = 0
 var highScore = 0
 var save_path = "user://data.save"
 var highscore_been_called = false
-
+var muteMusic_state
+var muteSFX_state
 
 
 func _ready():
@@ -119,6 +120,7 @@ func _add_score():
 	score += 100
 
 func _game_over():
+	Music.get_node("PlayerDeath").play()
 	$PausedMenu/Background.show()
 	$GameOverScreen/Popup.show()
 	$HUD/ScoreBox.hide()
@@ -147,6 +149,8 @@ func save(_high_score):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	file.store_var(highScore)
+	file.store_var(muteMusic_state)
+	file.store_var(muteSFX_state)
 	file.close()
 	
 	
@@ -155,4 +159,6 @@ func load_file():
 	if file.file_exists(save_path):
 		file.open_encrypted_with_pass(save_path, File.READ, "Porfpo12")
 		highScore = file.get_var()
+		muteMusic_state = file.get_var()
+		muteSFX_state = file.get_var()
 		file.close()

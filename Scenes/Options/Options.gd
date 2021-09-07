@@ -3,7 +3,7 @@ extends Control
 var muteMusic_state
 var muteSFX_state
 var save_path = "user://data.save"
-
+var highScore
 
 
 func _ready():
@@ -12,15 +12,15 @@ func _ready():
 
 
 func _process(_delta):
-	if muteMusic_state == 0:
-		$CenterContainer/VBoxContainer/MuteMusic.pressed = true
+	if muteMusic_state == 1:
+		$Menu/CenterRow/Buttons/MuteMusic.pressed = true
 	else:
-		$CenterContainer/VBoxContainer/MuteMusic.pressed = false
+		$Menu/CenterRow/Buttons/MuteMusic.pressed = false
 	
 	if muteSFX_state == 1:
-		$CenterContainer/VBoxContainer/MuteSFX.pressed = true
+		$Menu/CenterRow/Buttons/MuteSFX.pressed = true
 	else:
-		$CenterContainer/VBoxContainer/MuteSFX.pressed = false
+		$Menu/CenterRow/Buttons/MuteSFX.pressed = false
 
 
 func _on_Back_pressed():
@@ -33,13 +33,13 @@ func _on_Back_pressed():
 
 func _on_MuteMusic_pressed():
 	Music.get_node("ButtonPress").play()
-	if muteMusic_state == 0:
+	if muteMusic_state == 1:
 		AudioServer.set_bus_mute(2, not AudioServer.is_bus_mute(2))
-		muteMusic_state = 1
+		muteMusic_state = 0
 		save(muteMusic_state)
 	else:
 		AudioServer.set_bus_mute(2, not AudioServer.is_bus_mute(2))
-		muteMusic_state = 0
+		muteMusic_state = 1
 		save(muteMusic_state)
 
 
@@ -62,6 +62,7 @@ func load_file():
 	var file = File.new()
 	if file.file_exists(save_path):
 		file.open_encrypted_with_pass(save_path, File.READ, "Porfpo12")
+		highScore = file.get_var()
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
 		file.close()
@@ -70,6 +71,7 @@ func load_file():
 func save(_Music):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
+	file.store_var(highScore)
 	file.store_var(muteMusic_state)
 	file.store_var(muteSFX_state)
 	file.close()

@@ -8,4 +8,5 @@ margin_bottom = 310.0
 scene_to_load = "res://Scenes/World/World.tscn"
 
 [node name="Label" parent="." index="0"]
+custom_constants/shadow_offset_y = 3
 text = "New Game"
