@@ -7,13 +7,17 @@ var muteMusic_state = 1
 var muteSFX_state = 1
 
 
+
 func _ready():
 	if not savegame.file_exists(save_path):
 		create_save()
 
 	load_file()
-	print(muteMusic_state)
-	print(muteSFX_state)
+	
+
+
+
+
 
 	if muteMusic_state == 0:
 		AudioServer.set_bus_mute(2, not AudioServer.is_bus_mute(2))
@@ -22,12 +26,14 @@ func _ready():
 		AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
 
 
+
 func create_save():
 	savegame.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	savegame.store_var(highScore)
 	savegame.store_var(muteMusic_state)
 	savegame.store_var(muteSFX_state)
 	savegame.close()
+
 
 
 func load_file():

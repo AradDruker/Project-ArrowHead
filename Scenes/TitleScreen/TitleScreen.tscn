@@ -122,3 +122,7 @@ custom_fonts/font = SubResource( 3 )
 text = "Verison 0.1
 Lodea Studios"
 align = 2
+
+[connection signal="pressed" from="Menu/CenterRow/Buttons/NewGameButton" to="." method="_on_NewGameButton_pressed"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/LeaderboardsButton" to="." method="_on_LeaderboardsButton_pressed"]
+[connection signal="pressed" from="Menu/CenterRow/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]

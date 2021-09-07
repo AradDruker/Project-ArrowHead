@@ -8,19 +8,10 @@ func _ready():
 	get_tree().paused = false
 	load_file()
 	$Menu/HighScore.text = "Highscore: " + str(int(highScore))
-	
-	
-	for button in $Menu/CenterRow/Buttons.get_children():
-		button.connect("pressed", self, "_on_Button_pressed", [button.scene_to_load])
 
 
 
-func _on_Button_pressed(scene_to_load):
-	Music.get_node("ButtonPress").play()
-# warning-ignore:return_value_discarded
-	get_tree().change_scene(scene_to_load)
-	
-	
+
 func load_file():
 	var file = File.new()
 	if file.file_exists(save_path):
@@ -30,3 +21,20 @@ func load_file():
 		print ("highscore loaded from file:")
 		print (int(highScore))
 		print ("\n")
+
+
+
+func _on_LeaderboardsButton_pressed():
+	Music.get_node("ButtonPress").play()
+
+
+func _on_OptionsButton_pressed():
+	Music.get_node("ButtonPress").play()
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/Options/Options.tscn")
+
+
+func _on_NewGameButton_pressed():
+	Music.get_node("ButtonPress").play()
+# warning-ignore:return_value_discarded
+	get_tree().change_scene("res://Scenes/World/World.tscn")

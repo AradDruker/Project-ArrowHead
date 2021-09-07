@@ -49,8 +49,16 @@ custom_constants/shadow_offset_y = 5
 text = "Paused"
 align = 1
 
-[node name="Details" type="VBoxContainer" parent="Popup/Menu"]
+[node name="Spacer" type="Label" parent="Popup/Menu"]
 margin_top = 139.0
+margin_right = 1040.0
+margin_bottom = 153.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Details" type="VBoxContainer" parent="Popup/Menu"]
+margin_top = 157.0
 margin_right = 1040.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
@@ -59,29 +67,46 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Continue" type="Button" parent="Popup/Menu/Details"]
-margin_top = 96.0
+margin_top = 49.0
 margin_right = 1040.0
-margin_bottom = 159.0
+margin_bottom = 119.0
+rect_min_size = Vector2( 0, 63 )
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "Continue"
 flat = true
 
-[node name="RestartButton" type="Button" parent="Popup/Menu/Details"]
-margin_top = 179.0
+[node name="Spacer" type="Label" parent="Popup/Menu/Details"]
+margin_top = 139.0
 margin_right = 1040.0
-margin_bottom = 242.0
+margin_bottom = 153.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="Popup/Menu/Details"]
+margin_top = 173.0
+margin_right = 1040.0
+margin_bottom = 236.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
 text = "Restart Game"
 flat = true
 
-[node name="MainMenu" type="Button" parent="Popup/Menu/Details"]
-margin_top = 262.0
+[node name="Spacer2" type="Label" parent="Popup/Menu/Details"]
+margin_top = 256.0
 margin_right = 1040.0
-margin_bottom = 325.0
+margin_bottom = 270.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="Popup/Menu/Details"]
+margin_top = 290.0
+margin_right = 1040.0
+margin_bottom = 353.0
 focus_mode = 0
 custom_fonts/font = ExtResource( 1 )
 enabled_focus_mode = 0
