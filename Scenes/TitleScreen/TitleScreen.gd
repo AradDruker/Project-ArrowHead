@@ -1,5 +1,9 @@
 extends Control
 
+onready var PlayServices = get_node("res://Integrations/GooglePlay.gd")
+ 
+
+
 var highScore = 0
 var save_path = "user://data.save"
 
@@ -26,6 +30,7 @@ func load_file():
 
 func _on_LeaderboardsButton_pressed():
 	Music.get_node("ButtonPress").play()
+	PlayServices.show_leaderboard()
 
 
 func _on_OptionsButton_pressed():
