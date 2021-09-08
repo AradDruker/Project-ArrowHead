@@ -16,11 +16,12 @@ config/icon="res://Assets/icons/icon.png"
 
 [audio]
 
-default_bus_layout="res://Trash/default_bus_layout.tres"
+default_bus_layout="res://Integrations/default_bus_layout.tres"
 
 [autoload]
 
-Global="*res://Trash/global.gd"
+GooglePlay="*res://Integrations/GooglePlay.gd"
+Global="*res://Integrations/global.gd"
 Music="*res://Scenes/Music/Music.tscn"
 
 [display]
@@ -43,5 +44,5 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
-environment/default_environment="res://Trash/default_env.tres"
+environment/default_environment="res://Integrations/default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

@@ -4,12 +4,12 @@
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-hdpi-v4\\icon_foreground.png"
     },
     {
-        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap_icon.png.flat",
-        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap\\icon.png"
-    },
-    {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\drawable_splash_drawable.xml.flat",
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\drawable\\splash_drawable.xml"
+    },
+    {
+        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap_icon.png.flat",
+        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap\\icon.png"
     },
     {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4_icon.png.flat",
@@ -24,12 +24,12 @@
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-xxxhdpi-v4\\icon_foreground.png"
     },
     {
-        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4_icon.png.flat",
-        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-hdpi-v4\\icon.png"
-    },
-    {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4_icon_foreground.png.flat",
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-mdpi-v4\\icon_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4_icon.png.flat",
+        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-hdpi-v4\\icon.png"
     },
     {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4_icon.png.flat",

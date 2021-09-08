@@ -24,12 +24,12 @@
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap\\icon_foreground.png"
     },
     {
-        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi-v4_icon.png.flat",
-        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-xhdpi-v4\\icon.png"
-    },
-    {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\release\\mipmap-hdpi-v4_icon.png.flat",
         "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-hdpi-v4\\icon.png"
+    },
+    {
+        "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\release\\mipmap-xhdpi-v4_icon.png.flat",
+        "source": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\res\\mipmap-xhdpi-v4\\icon.png"
     },
     {
         "merged": "C:\\Users\\aradd\\Documents\\GitHub\\Project-V\\android\\build\\build\\intermediates\\res\\merged\\release\\drawable_splash_drawable.xml.flat",
