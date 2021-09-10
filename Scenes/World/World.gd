@@ -51,19 +51,6 @@ func create_enemy():
 	enemy.position.y = y_pos
 	return enemy
 
-func create_coin():
-	randomize()
-	var size = get_viewport().size
-	var x_pos = randi() % int(size.x)
-	var y_pos = randi() % int(size.y)
-	x_pos = clamp(x_pos, 100, size.x - 100)
-	y_pos = clamp(y_pos, 100, size.y - 100)
-	var coin = $Coin
-#	coin.connect("collected", self, "_add_coin" )
-	coin.position.x = x_pos
-	coin.position.y = y_pos
-	return coin
-	
 	
 func _physics_process(delta):
 	var enemies = $Enemies.get_children()
@@ -110,10 +97,6 @@ func _on_EnemySpawn_timeout():
 		var enemy = create_enemy()
 		$Enemies.add_child(enemy)
 
-
-func _on_CoinSpawn_timeout():
-		$Coin.show()
-		var _coin_1 = create_coin()
 
 func reset_game():
 	# Reset the game method
