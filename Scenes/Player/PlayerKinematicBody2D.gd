@@ -1,10 +1,14 @@
 extends KinematicBody2D
 
+export (PackedScene) var World
+
 var velocity = Vector2(10.0,10.0)
 const MAX_SPEED = 12
 const ACCELERATION = 90
-const FRICTION = 50
-const FRICTION_2 = 40
+const FRICTION_0 = 55
+const FRICTION_1 = 50
+const FRICTION_2 = 45
+const FRICTION_3 = 40
 
 signal game_over
 
@@ -35,13 +39,19 @@ func _physics_process(delta):
 	
 	# Player slow to stop
 	var dist = pow(pow(position.x - mouse_pos.x, 2) + pow(position.y - mouse_pos.y, 2), 0.5)
-	if dist < 150 and dist >= 50:
-		velocity = velocity * FRICTION * delta
-	elif dist < 50 and dist >= 5:
+	if dist >= 240:
+		velocity += input_vector * ACCELERATION * delta
+	elif dist < 240 and dist >= 200:
+		velocity = velocity * FRICTION_0 * delta
+	elif dist < 200 and dist >= 160:
+		velocity = velocity * FRICTION_1 * delta
+	elif dist < 160 and dist >= 120:
 		velocity = velocity * FRICTION_2 * delta
-	elif dist < 5:
+	elif dist < 120 and dist >= 80:
+		velocity = velocity * FRICTION_3 * delta
+	elif dist < 80:
 		velocity = Vector2.ZERO
-	
+
 	
 	# Bumps player if hits wall
 	var collision = move_and_collide(velocity)
@@ -52,5 +62,5 @@ func _physics_process(delta):
 			Music.get_node("BorderBump").play()
 		else:
 			emit_signal("game_over")
-	
+
 

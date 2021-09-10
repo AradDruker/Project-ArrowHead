@@ -8,9 +8,9 @@
 [ext_resource path="res://Assets/Effects/Explode/explode_4.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Effects/Explode/explode_2.png" type="Texture" id=8]
 
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 4.21515
-height = 3.73044
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.64536
+height = 3.06186
 
 [sub_resource type="Animation" id=2]
 resource_name = "Explosion"
@@ -70,25 +70,24 @@ tracks/1/keys = {
 }
 
 [node name="EnemyKinematicBody2D" type="KinematicBody2D"]
-position = Vector2( 0, -0.353546 )
+collision_layer = 4
+collision_mask = 3
+collision/safe_margin = 0.001
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="VisibilityNotifier2D" type="VisibilityEnabler2D" parent="."]
 light_mask = 0
-position = Vector2( -0.101872, -7.3292 )
-scale = Vector2( 0.444103, 0.8894 )
+position = Vector2( -0.101872, -6.01818 )
+scale = Vector2( 0.444103, 0.758298 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 0.7, 0.7 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 8 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 7 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

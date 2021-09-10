@@ -5,6 +5,7 @@ var MAX_SPEED
 var ACCELERATION
 var player_pos
 var enemy_pos
+var collide = 1
 # warning-ignore:unused_signal
 signal enemy_collide
 var MOVE = false
@@ -30,7 +31,6 @@ func _physics_process(delta):
 		v = v.direction_to(Vector2(player_pos))
 		velocity +=  v * ACCELERATION
 		velocity = velocity.clamped(MAX_SPEED)
-
 		
 		
 		# Making ship point to the destination
@@ -51,12 +51,12 @@ func _physics_process(delta):
 					explode()
 					emit_signal("exploded")
 
-			
 
 func explode():
 	MOVE = false
 	$AnimationPlayer.play("Explosion")
 	Music.get_node("Explosion").play()
+
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

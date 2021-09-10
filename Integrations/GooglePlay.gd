@@ -3,8 +3,6 @@ extends Node
 
 var play_games_services = null
 
-
-# Check if plugin was added to the project
 func _ready():
 	_start_services()
 	_connect_signals()
