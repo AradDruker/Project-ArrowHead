@@ -5,7 +5,7 @@ var save_path = "user://data.save" #place of the file
 var highScore = 0
 var muteMusic_state = 1
 var muteSFX_state = 1
-var coin_total = 10
+var coin_total = int(0)
 
 
 
