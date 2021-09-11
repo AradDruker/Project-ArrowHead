@@ -11,6 +11,7 @@ const FRICTION_2 = 45
 const FRICTION_3 = 40
 
 signal game_over
+signal coin_collected
 
 func _ready():
 	position = Vector2(640.0, 360.0)
@@ -62,7 +63,12 @@ func _physics_process(delta):
 		if collided_shape == null:
 			Music.get_node("BorderBump").play()
 		else:
-			print(collision.collider.name.split("@"))
-#			var body_name = collision.collider.name
-			emit_signal("game_over")
+			var collision_name = collision.collider.name.split("@")
+			print(collision_name)
+			if collision_name[0] == "Coin":
+				emit_signal("coin_collected")
+				var object_id = collision.collider_id
+				instance_from_id(object_id).queue_free()
+			else:
+				emit_signal("game_over")
 

@@ -49,6 +49,12 @@ func _physics_process(delta):
 		if !highscore_been_called:
 			$HUD/AnimationPlayer.play("show_HighScore")
 			highscore_been_called = true
+	if score >= lastCoinScore + coinRand * 100:
+		var coinChoices = [3, 5, 7]
+		var coin_instance = create_coin()
+		$Coins.add_child(coin_instance)
+		lastCoinScore = score
+		coinRand = coinChoices[randi() % coinChoices.size()]
 	
 	for en in enemies:
 		if en:
@@ -90,18 +96,20 @@ func create_enemy():
 	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
-	rng.randomize()
-	var my_random_number = rng.randf_range(4,6)
-	for _i in my_random_number:
-		var enemy = create_enemy()
-		$Enemies.add_child(enemy)
+#	rng.randomize()
+#	var my_random_number = rng.randf_range(4,6)
+#	for _i in my_random_number:
+#		var enemy = create_enemy()
+#		$Enemies.add_child(enemy)
+	pass
 		
 		
 		
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 5 + 3):
-		var enemy = create_enemy()
-		$Enemies.add_child(enemy)
+#	for _i in range(randi() % 5 + 3):
+#		var enemy = create_enemy()
+#		$Enemies.add_child(enemy)
+	pass
 
 
 func reset_game():
@@ -129,6 +137,7 @@ func reset_game():
 
 func create_coin():
 	var coin = coinSprite.instance()
+	coin.connect("coin_collected", self, "_add_coin")
 	randomize()
 	var size = get_viewport().size
 	var x_pos = randi() % int(size.x)
@@ -143,13 +152,11 @@ func create_coin():
 
 func _add_score():
 	score += 100
-	if score >= lastCoinScore + coinRand * 100:
-		var coinChoices = [3, 5, 7]
-		var coin_instance = create_coin()
-		$Coins.add_child(coin_instance)
-		lastCoinScore = score
-		coinRand = coinChoices[randi() % coinChoices.size()]
 
+func _add_coin():
+	#Add code here for what happens when player collects the coin
+	# Play should add a coin to his coin_total
+	pass
 
 func _game_over():
 	Music.get_node("PlayerDeath").play()
