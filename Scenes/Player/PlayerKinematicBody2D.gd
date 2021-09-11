@@ -58,10 +58,10 @@ func _physics_process(delta):
 	# Bumps player if hits wall
 	var collision = move_and_collide(velocity)
 	if collision:
-		velocity = velocity.bounce(collision.normal)
 		var collided_shape = collision.get_collider_shape()
 		if collided_shape == null:
 			Music.get_node("BorderBump").play()
+			velocity = velocity.bounce(collision.normal)
 		else:
 			var collision_name = collision.collider.name.split("@")
 			print(collision_name)

@@ -96,20 +96,18 @@ func create_enemy():
 	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
-#	rng.randomize()
-#	var my_random_number = rng.randf_range(4,6)
-#	for _i in my_random_number:
-#		var enemy = create_enemy()
-#		$Enemies.add_child(enemy)
-	pass
+	rng.randomize()
+	var my_random_number = rng.randf_range(4,6)
+	for _i in my_random_number:
+		var enemy = create_enemy()
+		$Enemies.add_child(enemy)
 		
 		
 		
 func _on_EnemySpawn_timeout():
-#	for _i in range(randi() % 5 + 3):
-#		var enemy = create_enemy()
-#		$Enemies.add_child(enemy)
-	pass
+	for _i in range(randi() % 5 + 3):
+		var enemy = create_enemy()
+		$Enemies.add_child(enemy)
 
 
 func reset_game():
