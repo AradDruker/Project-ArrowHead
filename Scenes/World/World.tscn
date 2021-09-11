@@ -86,6 +86,8 @@ z_index = 1
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="Coins" type="Node" parent="."]
+
 [node name="EnemySpawn" type="Timer" parent="."]
 wait_time = 2.5
 autostart = true

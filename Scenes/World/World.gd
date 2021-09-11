@@ -9,6 +9,9 @@ var save_path = "user://data.save"
 var highscore_been_called = false
 var muteMusic_state
 var muteSFX_state
+var coinRand = 0
+var lastCoinScore = 500
+var coinSprite = preload("res://Scenes/Coin/Coin.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -35,6 +38,39 @@ func _ready():
 	$PlayerKinematicBody2D.connect("game_over", self, "_game_over")
 	###
 
+	
+func _physics_process(delta):
+	var enemies = $Enemies.get_children()
+	
+	#Increse score every second
+	score += delta * 30
+	if highScore < score:
+		highScore = score
+		save(highScore)
+		if !highscore_been_called:
+			$HUD/AnimationPlayer.play("show_HighScore")
+			highscore_been_called = true
+	
+	for en in enemies:
+		if en:
+			en.player_details($PlayerKinematicBody2D.position)
+
+
+
+func _process(_delta):
+	
+	# Lets you exit the game with the escape key - Mainly for debugging comfort
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+	
+	#Score UI
+	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
+	$GameOverScreen/Popup/Menu/Score.text = "Score: " + str(int(score))
+	#Coins UI
+	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
+	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
+
+
 
 func create_enemy():
 	# Get the number of slice to slice the screen
@@ -51,40 +87,6 @@ func create_enemy():
 	enemy.position.x = x_pos
 	enemy.position.y = y_pos
 	return enemy
-
-	
-func _physics_process(delta):
-	var enemies = $Enemies.get_children()
-	
-	#Increse score every second
-	score += delta * 30
-	if highScore < score:
-		highScore = score
-		save(highScore)
-		if !highscore_been_called:
-			$HUD/AnimationPlayer.play("show_HighScore")
-			highscore_been_called = true
-#
-	#Score UI
-	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
-	$GameOverScreen/Popup/Menu/Score.text = "Score: " + str(int(score))
-	
-	#Coins UI
-	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
-	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
-	
-	for en in enemies:
-		if en:
-			en.player_details($PlayerKinematicBody2D.position)
-
-
-
-func _process(_delta):
-	
-	# Lets you exit the game with the escape key - Mainly for debugging comfort
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
-
 	
 	
 #First spawn before the spawn intervals.
@@ -126,8 +128,28 @@ func reset_game():
 	get_tree().paused = false
 	
 
+func create_coin():
+	var coin = coinSprite.instance()
+	randomize()
+	var size = get_viewport().size
+	var x_pos = randi() % int(size.x)
+	var y_pos = randi() % int(size.y)
+	x_pos = clamp(x_pos, 100, size.x - 100)
+	y_pos = clamp(y_pos, 100, size.y - 100)
+	coin.position.x = x_pos
+	coin.position.y = y_pos
+	return coin
+
+
+
 func _add_score():
 	score += 100
+	if score >= lastCoinScore + coinRand * 100:
+		var coinChoices = [3, 5, 7]
+		var coin_instance = create_coin()
+		$Coins.add_child(coin_instance)
+		lastCoinScore = score
+		coinRand = coinChoices[randi() % coinChoices.size()]
 
 
 func _game_over():
