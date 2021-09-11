@@ -4,12 +4,12 @@
 [ext_resource path="res://Assets/icons/pause.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=8]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
-font_data = SubResource( 1 )
+font_data = SubResource( 8 )
 
 [sub_resource type="DynamicFontData" id=3]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
@@ -114,12 +114,12 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="ScoreBox"]
 margin_left = 55.0
 margin_right = 1260.0
-margin_bottom = 147.0
+margin_bottom = 143.0
 
 [node name="Score" type="Label" parent="ScoreBox/HBoxContainer"]
-margin_top = 15.0
+margin_top = 13.0
 margin_right = 93.0
-margin_bottom = 132.0
+margin_bottom = 130.0
 custom_fonts/font = ExtResource( 1 )
 text = "100
 "
@@ -136,13 +136,13 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="Reset"]
 margin_top = 45.0
 margin_right = 1240.0
-margin_bottom = 106.0
+margin_bottom = 101.0
 alignment = 2
 
 [node name="PauseButton" type="Button" parent="Reset/HBoxContainer"]
 margin_left = 1178.0
 margin_right = 1240.0
-margin_bottom = 61.0
+margin_bottom = 56.0
 focus_mode = 0
 size_flags_vertical = 5
 enabled_focus_mode = 0

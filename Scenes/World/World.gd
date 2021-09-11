@@ -4,6 +4,7 @@ export (PackedScene) var Enemy
 
 var score = 0
 var highScore = 0
+var coin_total = 0
 var save_path = "user://data.save"
 var highscore_been_called = false
 var muteMusic_state
@@ -66,7 +67,11 @@ func _physics_process(delta):
 #
 	#Score UI
 	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
-	$GameOverScreen/Popup/Menu/Details/Score.text = "Score: " + str(int(score))
+	$GameOverScreen/Popup/Menu/Score.text = "Score: " + str(int(score))
+	
+	#Coins UI
+	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
+	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
 	
 	for en in enemies:
 		if en:
@@ -157,6 +162,7 @@ func save(_high_score):
 	file.store_var(highScore)
 	file.store_var(muteMusic_state)
 	file.store_var(muteSFX_state)
+	file.store_var(coin_total)
 	file.close()
 	
 	
@@ -167,4 +173,5 @@ func load_file():
 		highScore = file.get_var()
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
+		coin_total = file.get_var()
 		file.close()

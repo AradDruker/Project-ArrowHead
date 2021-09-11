@@ -1,19 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Assets/Objects/gold_1.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Objects/gold_4.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Objects/gold_2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Objects/gold_3.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Coin/Coin.tres" type="SpriteFrames" id=1]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 1 ), ExtResource( 1 ) ],
-"loop": true,
-"name": "default",
-"speed": 7.0
-} ]
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 38.5512
 
 [node name="Coin" type="StaticBody2D"]
@@ -25,10 +14,10 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
-frames = SubResource( 1 )
-frame = 8
+frames = ExtResource( 1 )
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( 0.3, 0.3 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )

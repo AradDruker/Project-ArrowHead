@@ -25,14 +25,15 @@ func _physics_process(delta):
 	#input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	#input_vector = input_vector.normalized()
 	input_vector = input_vector.direction_to(mouse_pos)
-	
+
+
 	# Player movement and head point
 	if input_vector != Vector2.ZERO:
 		velocity += input_vector * ACCELERATION * delta
 		velocity = velocity.clamped(MAX_SPEED)
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = PI - ang
-	
+#
 	#Player stops
 	#else:
 	#	velocity -= velocity * FRICTION * delta
@@ -62,5 +63,4 @@ func _physics_process(delta):
 			Music.get_node("BorderBump").play()
 		else:
 			emit_signal("game_over")
-
 

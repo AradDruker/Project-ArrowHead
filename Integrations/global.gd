@@ -5,7 +5,7 @@ var save_path = "user://data.save" #place of the file
 var highScore = 0
 var muteMusic_state = 1
 var muteSFX_state = 1
-var coins_collected = 0
+var coin_total = 10
 
 
 
@@ -33,6 +33,7 @@ func create_save():
 	savegame.store_var(highScore)
 	savegame.store_var(muteMusic_state)
 	savegame.store_var(muteSFX_state)
+	savegame.store_var(coin_total)
 	savegame.close()
 
 
@@ -44,4 +45,5 @@ func load_file():
 		highScore = file.get_var()
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
+		coin_total = file.get_var()
 		file.close()
