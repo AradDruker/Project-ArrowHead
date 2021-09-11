@@ -20,7 +20,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	randomize()
 	load_file()
-
 	### Signals for buttons
 # warning-ignore:return_value_discarded
 	$HUD.connect("pause_pressed", self,"_paused_menu_pop")

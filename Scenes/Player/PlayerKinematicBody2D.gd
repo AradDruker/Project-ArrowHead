@@ -62,5 +62,7 @@ func _physics_process(delta):
 		if collided_shape == null:
 			Music.get_node("BorderBump").play()
 		else:
+			print(collision.collider.name.split("@"))
+#			var body_name = collision.collider.name
 			emit_signal("game_over")
 
