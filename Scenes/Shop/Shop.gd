@@ -3,13 +3,13 @@ extends Control
 var highScore
 var muteMusic_state
 var muteSFX_state
-var coin_total = 0
+var coin_total = int(0)
 var save_path = "user://data.save"
 
 func _ready():
 	load_file()
 
-	$CoinNumber.text = "Coins: " + str(int(coin_total))
+	$CoinNumber.text = "Coins: " + str(coin_total)
 	
 	
 func _process(_delta):
