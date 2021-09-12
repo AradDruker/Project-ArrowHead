@@ -9,6 +9,8 @@ var save_path = "user://data.save"
 var highscore_been_called = false
 var muteMusic_state
 var muteSFX_state
+var skin_1; var skin_2;
+var skin_1_use; var skin_2_use;
 var coinRand = 0
 var lastCoinScore = 500
 var coinSprite = preload("res://Scenes/Coin/Coin.tscn")
@@ -49,12 +51,12 @@ func _physics_process(delta):
 		if !highscore_been_called:
 			$HUD/AnimationPlayer.play("show_HighScore")
 			highscore_been_called = true
-	if score >= lastCoinScore + coinRand * 100:
-		var coinChoices = [3, 5, 7]
-		var coin_instance = create_coin()
-		$Coins.add_child(coin_instance)
-		lastCoinScore = score
-		coinRand = coinChoices[randi() % coinChoices.size()]
+#	if score >= lastCoinScore + coinRand * 100:
+#		var coinChoices = [3, 5, 7]
+#		var coin_instance = create_coin()
+#		$Coins.add_child(coin_instance)
+#		lastCoinScore = score
+#		coinRand = coinChoices[randi() % coinChoices.size()]
 	
 	for en in enemies:
 		if en:
@@ -118,9 +120,12 @@ func reset_game():
 	$EnemySpawnInstant.stop()
 	$PlayerKinematicBody2D.position = Vector2(640.0, 360.0)
 	var enemies = $Enemies.get_children()
+	var coins = $Coins.get_children()
 	score = 0
 	for enemy in enemies:
 		enemy.queue_free()
+	for coin in coins:
+		coin.queue_free()
 	
 	###
 	$EnemySpawn.start()
@@ -136,7 +141,6 @@ func reset_game():
 func create_coin():
 	var coin = coinSprite.instance()
 # warning-ignore:return_value_discarded
-	$PlayerKinematicBody2D.connect("coin_collected", self, "_add_coin")
 	randomize()
 	var size = get_viewport().size
 	var x_pos = randi() % int(size.x)
@@ -148,13 +152,23 @@ func create_coin():
 	return coin
 
 
+func _on_CoinSpawn_timeout():
+	if score >= lastCoinScore + coinRand * 100:
+		var coinChoices = [3, 5, 7]
+		var coin_instance = create_coin()
+		$Coins.add_child(coin_instance)
+		lastCoinScore = score
+		coinRand = coinChoices[randi() % coinChoices.size()]
+
+
+func _on_PlayerKinematicBody2D_coin_collected():
+	coin_total += 1
+	save(coin_total)
+
 
 func _add_score():
 	score += 100
 
-func _add_coin():
-	coin_total += 1
-	save(coin_total)
 
 func _game_over():
 	Music.get_node("PlayerDeath").play()
@@ -182,13 +196,17 @@ func _paused_menu_pop_close():
 	get_tree().paused = false
 
 
-func save(_high_score):
+func save(_shop):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	file.store_var(highScore)
 	file.store_var(muteMusic_state)
 	file.store_var(muteSFX_state)
 	file.store_var(coin_total)
+	file.store_var(skin_1)
+	file.store_var(skin_1_use)
+	file.store_var(skin_2)
+	file.store_var(skin_2_use)
 	file.close()
 	
 	
@@ -200,4 +218,10 @@ func load_file():
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
 		coin_total = file.get_var()
+		skin_1 = file.get_var()
+		skin_1_use = file.get_var()
+		skin_2 = file.get_var()
+		skin_2_use = file.get_var()
 		file.close()
+
+

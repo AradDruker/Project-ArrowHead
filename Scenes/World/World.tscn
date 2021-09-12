@@ -84,9 +84,9 @@ tile_data = PoolIntArray( -1, 1, 0, -65536, 1, 0, -65535, 1, 0, -65534, 1, 0, -6
 [node name="PlayerKinematicBody2D" parent="." instance=ExtResource( 1 )]
 z_index = 1
 
-[node name="Enemies" type="Node" parent="."]
-
 [node name="Coins" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
 
 [node name="EnemySpawn" type="Timer" parent="."]
 wait_time = 2.5
@@ -102,5 +102,11 @@ pause_mode = 2
 
 [node name="GameOverScreen" parent="." instance=ExtResource( 6 )]
 
+[node name="CoinSpawn" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="coin_collected" from="PlayerKinematicBody2D" to="." method="_on_PlayerKinematicBody2D_coin_collected"]
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
+[connection signal="timeout" from="CoinSpawn" to="." method="_on_CoinSpawn_timeout"]

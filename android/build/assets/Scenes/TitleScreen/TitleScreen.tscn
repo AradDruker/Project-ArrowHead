@@ -81,22 +81,23 @@ alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 1 )]
 margin_top = 0.0
-margin_right = 290.0
+margin_right = 300.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 290, 80 )
+rect_min_size = Vector2( 300, 80 )
 size_flags_horizontal = 0
 
 [node name="ShopButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
 margin_top = 100.0
+margin_right = 145.0
 margin_bottom = 180.0
-rect_min_size = Vector2( 140, 80 )
+rect_min_size = Vector2( 145, 80 )
 size_flags_horizontal = 0
 
 [node name="OptionsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
 margin_top = 200.0
-margin_right = 215.0
+margin_right = 220.0
 margin_bottom = 280.0
-rect_min_size = Vector2( 215, 80 )
+rect_min_size = Vector2( 220, 80 )
 size_flags_horizontal = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
