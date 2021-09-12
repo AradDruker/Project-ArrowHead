@@ -4,6 +4,7 @@ var muteMusic_state
 var muteSFX_state
 var save_path = "user://data.save"
 var highScore
+var coin_total
 
 
 func _ready():
@@ -65,6 +66,7 @@ func load_file():
 		highScore = file.get_var()
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
+		coin_total = file.get_var()
 		file.close()
 
 
@@ -74,4 +76,5 @@ func save(_Music):
 	file.store_var(highScore)
 	file.store_var(muteMusic_state)
 	file.store_var(muteSFX_state)
+	file.store_var(coin_total)
 	file.close()

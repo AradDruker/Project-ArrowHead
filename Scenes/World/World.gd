@@ -72,8 +72,8 @@ func _process(_delta):
 	$HUD/ScoreBox/HBoxContainer/Score.text = str(int(score))
 	$GameOverScreen/Popup/Menu/Score.text = "Score: " + str(int(score))
 	#Coins UI
-	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
-	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(int(coin_total))
+	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
+	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
 
 
 
