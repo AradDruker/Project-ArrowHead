@@ -4,7 +4,7 @@ export (PackedScene) var Enemy
 
 var score = 0
 var highScore = 0
-var coin_total = 0
+var coin_total
 var save_path = "user://data.save"
 var highscore_been_called = false
 var muteMusic_state
@@ -135,7 +135,7 @@ func reset_game():
 
 func create_coin():
 	var coin = coinSprite.instance()
-	coin.connect("coin_collected", self, "_add_coin")
+	$PlayerKinematicBody2D.connect("coin_collected", self, "_add_coin")
 	randomize()
 	var size = get_viewport().size
 	var x_pos = randi() % int(size.x)
@@ -152,9 +152,8 @@ func _add_score():
 	score += 100
 
 func _add_coin():
-	#Add code here for what happens when player collects the coin
-	# Play should add a coin to his coin_total
-	pass
+	coin_total += 1
+	save(coin_total)
 
 func _game_over():
 	Music.get_node("PlayerDeath").play()
