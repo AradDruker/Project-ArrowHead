@@ -135,6 +135,7 @@ func reset_game():
 
 func create_coin():
 	var coin = coinSprite.instance()
+# warning-ignore:return_value_discarded
 	$PlayerKinematicBody2D.connect("coin_collected", self, "_add_coin")
 	randomize()
 	var size = get_viewport().size

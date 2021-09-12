@@ -2,9 +2,9 @@ extends Node
 
 var savegame = File.new() #file
 var save_path = "user://data.save" #place of the file
-var highScore = 0
-var muteMusic_state = 1
-var muteSFX_state = 1
+var highScore = int(0)
+var muteMusic_state = int(1)
+var muteSFX_state = int(1)
 var coin_total = int(0)
 
 
