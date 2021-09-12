@@ -3,7 +3,7 @@ extends Control
 var highScore
 var muteMusic_state
 var muteSFX_state
-var coin_total = int(0)
+var coin_total
 var save_path = "user://data.save"
 
 func _ready():
