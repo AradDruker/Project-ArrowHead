@@ -4,12 +4,12 @@
 [ext_resource path="res://Assets/icons/pause.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=3]
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
-font_data = SubResource( 8 )
+font_data = SubResource( 1 )
 
 [sub_resource type="DynamicFontData" id=3]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
@@ -153,7 +153,6 @@ __meta__ = {
 }
 
 [node name="Highscore" type="Label" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -167,7 +166,6 @@ __meta__ = {
 }
 
 [node name="ExplodeScore" type="Label" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_left = 172.305
 margin_top = 320.638

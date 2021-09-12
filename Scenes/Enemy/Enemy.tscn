@@ -119,7 +119,6 @@ anims/Explosion = SubResource( 2 )
 anims/Spawn = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
-visible = false
 margin_top = -10.0
 margin_right = 134.0
 margin_bottom = 47.0
