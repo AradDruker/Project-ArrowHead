@@ -107,7 +107,7 @@ scale = Vector2( 0.444103, 0.758298 )
 [node name="EnemySprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.639216, 0.639216, 0 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -119,6 +119,8 @@ anims/Explosion = SubResource( 2 )
 anims/Spawn = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_top = -10.0
 margin_right = 134.0
 margin_bottom = 47.0
