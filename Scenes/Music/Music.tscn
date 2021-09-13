@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Audio/SkyFire (Title Screen).ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Audio/forceField_000.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Audio/explosionCrunch_000.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Audio/bong_001.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/584246__smokinghotdog__game-over-fail-scratch-[AudioTrimmer.com]-[AudioTrimmer.com].wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/coin_pick.wav" type="AudioStream" id=6]
+
+[node name="Music" type="Node"]
+pause_mode = 2
+
+[node name="BackgoundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -30.0
+autoplay = true
+bus = "Backgroud"
+
+[node name="BorderBump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+bus = "SFX"
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -25.0
+bus = "SFX"
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -12.0
+bus = "SFX"
+
+[node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+bus = "SFX"
+
+[node name="CoinPick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+bus = "SFX"

@@ -1,31 +1,36 @@
 extends Control
 
+#onready var PlayServices = get_node("res://Integrations/GooglePlay.gd")
+ 
+var highScore = 0
+var save_path = "user://data.save"
 
-var scene_path_to_load
-
-#Hovering color change
-func _on_NewGameButton_mouse_entered():
-	$Menu/CenterRow/Buttons/NewGameButton/Label.add_color_override("font_color", Color("#808080"))
-func _on_NewGameButton_mouse_exited():
-	$Menu/CenterRow/Buttons/NewGameButton/Label.add_color_override("font_color", Color("#FFFFFF"))
-func _on_LeaderboardsButton_mouse_entered():
-	$Menu/CenterRow/Buttons/LeaderboardsButton/Label.add_color_override("font_color", Color("#808080"))
-func _on_LeaderboardsButton_mouse_exited():
-	$Menu/CenterRow/Buttons/LeaderboardsButton/Label.add_color_override("font_color", Color("#FFFFFF"))
-func _on_OptionsButton_mouse_entered():
-	$Menu/CenterRow/Buttons/OptionsButton/Label.add_color_override("font_color", Color("#808080"))
-func _on_OptionsButton_mouse_exited():
-	$Menu/CenterRow/Buttons/OptionsButton/Label.add_color_override("font_color", Color("#FFFFFF"))
 
 func _ready():
+	get_tree().paused = false
+	load_file()
+	$Menu/HighScore.text = "Highscore: " + str(int(highScore))
+	
 	for button in $Menu/CenterRow/Buttons.get_children():
 		button.connect("pressed", self, "_on_Button_pressed", [button.scene_to_load])
-		
-func _on_Button_pressed(scene_to_load):
-	scene_path_to_load = scene_to_load
-	$FadeIn.show()
-	$FadeIn.fade_in()
 
-func _on_FadeIn_fade_finished():
+
+
+
+func load_file():
+	var file = File.new()
+	if file.file_exists(save_path):
+		file.open_encrypted_with_pass(save_path, File.READ, "Porfpo12")
+		highScore = file.get_var()
+		file.close()
+		print ("Highscore loaded from file:")
+		print (int(highScore))
+		print ("\n")
+
+
+func _on_Button_pressed(scene_to_load):
+	Music.get_node("ButtonPress").play()
 # warning-ignore:return_value_discarded
-	get_tree().change_scene(scene_path_to_load)
+	get_tree().change_scene(scene_to_load)
+
+

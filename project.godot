@@ -14,15 +14,33 @@ config/name="Project V"
 run/main_scene="res://Scenes/TitleScreen/TitleScreen.tscn"
 config/icon="res://Assets/icons/icon.png"
 
+[audio]
+
+default_bus_layout="res://Integrations/default_bus_layout.tres"
+
+[autoload]
+
+GooglePlay="res://Integrations/GooglePlay.gd"
+Global="*res://Integrations/global.gd"
+Music="*res://Scenes/Music/Music.tscn"
+
 [display]
 
 window/size/width=1280
 window/size/height=720
-window/stretch/mode="2d"
+window/stretch/mode="viewport"
+
 
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_render/layer_1="Borders"
+2d_render/layer_2="Player"
+2d_render/layer_3="Enemy"
+2d_render/layer_4="Coins"
 
 [physics]
 
@@ -34,5 +52,5 @@ quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
-environment/default_environment="res://Trash/default_env.tres"
+environment/default_environment="res://Integrations/default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

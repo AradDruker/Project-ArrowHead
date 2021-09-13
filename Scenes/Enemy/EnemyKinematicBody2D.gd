@@ -1,15 +1,15 @@
 extends KinematicBody2D
 
-
 var velocity = Vector2(1.0, 1.0)
 var MAX_SPEED
 var ACCELERATION
 var player_pos
+var enemy_pos
+var collide = 1
 # warning-ignore:unused_signal
 signal enemy_collide
 var MOVE = false
 signal exploded
-
 
 func _ready():
 	randomize()
@@ -33,8 +33,6 @@ func _physics_process(delta):
 		velocity = velocity.clamped(MAX_SPEED)
 		
 		
-		
-		
 		# Making ship point to the destination
 		var ang = atan2(velocity.x, velocity.y)
 		$EnemySprite.rotation = PI - ang
@@ -46,16 +44,19 @@ func _physics_process(delta):
 				
 				#Hold the object the enemy collided with
 				var collided_shape = enemy_collided.get_collider_shape()
-				# This if will only happen if the enemy collided with the border
+				# This will only happen if the enemy collided with the border
 				# as the borders has now collision shape
 				if collided_shape == null:
+					enemy_pos = get_position()
 					explode()
 					emit_signal("exploded")
-			
+
 
 func explode():
 	MOVE = false
 	$AnimationPlayer.play("Explosion")
+	Music.get_node("Explosion").play()
+
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
