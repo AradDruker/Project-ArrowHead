@@ -20,6 +20,11 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	randomize()
 	load_file()
+	#Sets mouse position to the center of the screen at game start
+	var screen_size = get_viewport().size
+	var screen_mid = Vector2(screen_size.x / 2, screen_size.y / 2)
+	get_viewport().warp_mouse(screen_mid)
+	
 	### Signals for buttons
 # warning-ignore:return_value_discarded
 	$HUD.connect("pause_pressed", self,"_paused_menu_pop")
