@@ -5,6 +5,8 @@ var muteSFX_state
 var save_path = "user://data.save"
 var highScore
 var coin_total
+var skin_1; var skin_2;
+var skin_1_use; var skin_2_use;
 
 
 func _ready():
@@ -67,14 +69,22 @@ func load_file():
 		muteMusic_state = file.get_var()
 		muteSFX_state = file.get_var()
 		coin_total = file.get_var()
+		skin_1 = file.get_var()
+		skin_1_use = file.get_var()
+		skin_2 = file.get_var()
+		skin_2_use = file.get_var()
 		file.close()
 
 
-func save(_Music):
+func save(_shop):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	file.store_var(highScore)
 	file.store_var(muteMusic_state)
 	file.store_var(muteSFX_state)
 	file.store_var(coin_total)
+	file.store_var(skin_1)
+	file.store_var(skin_1_use)
+	file.store_var(skin_2)
+	file.store_var(skin_2_use)
 	file.close()

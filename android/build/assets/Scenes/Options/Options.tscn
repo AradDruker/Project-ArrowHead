@@ -66,15 +66,15 @@ __meta__ = {
 }
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
-margin_left = 390.0
-margin_right = 650.0
+margin_left = 385.0
+margin_right = 655.0
 margin_bottom = 360.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MuteMusic" type="CheckBox" parent="Menu/CenterRow/Buttons"]
-margin_right = 260.0
+margin_right = 270.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 focus_mode = 0
@@ -87,7 +87,7 @@ align = 1
 
 [node name="MuteSFX" type="CheckBox" parent="Menu/CenterRow/Buttons"]
 margin_top = 104.0
-margin_right = 260.0
+margin_right = 270.0
 margin_bottom = 204.0
 rect_min_size = Vector2( 0, 100 )
 focus_mode = 0
@@ -100,7 +100,7 @@ align = 1
 
 [node name="Spacer" type="Label" parent="Menu/CenterRow/Buttons"]
 margin_top = 208.0
-margin_right = 260.0
+margin_right = 270.0
 margin_bottom = 258.0
 rect_min_size = Vector2( 0, 50 )
 __meta__ = {
@@ -109,7 +109,7 @@ __meta__ = {
 
 [node name="Back" type="Button" parent="Menu/CenterRow/Buttons"]
 margin_top = 262.0
-margin_right = 260.0
+margin_right = 270.0
 margin_bottom = 360.0
 focus_mode = 0
 custom_fonts/font = SubResource( 3 )

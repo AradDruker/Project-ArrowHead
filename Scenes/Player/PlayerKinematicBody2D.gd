@@ -64,9 +64,11 @@ func _physics_process(delta):
 			velocity = velocity.bounce(collision.normal)
 		else:
 #			var collision_name = collision.collider.name.split("@")
-			print(collision.collider.name)
+#			print(collision.collider.name)
 			if "Coin" in collision.collider.name:
 				emit_signal("coin_collected")
+# warning-ignore:return_value_discarded
+				Music.get_node("CoinPick").play()
 				var object_id = collision.collider_id
 				instance_from_id(object_id).queue_free()
 			else:
