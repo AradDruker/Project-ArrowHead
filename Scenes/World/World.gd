@@ -2,6 +2,9 @@ extends Node
 
 export (PackedScene) var Enemy
 
+var skin_1_sprite = preload("res://Assets/Characters/Player.png")
+var skin_2_sprite = preload("res://Assets/Characters/spaceRockets_002.png")
+
 var score = 0
 var highScore = 0
 var coin_total
@@ -47,7 +50,12 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$PlayerKinematicBody2D.connect("game_over", self, "_game_over")
 	###
-
+	### Signals for Skins
+# warning-ignore:return_value_discarded
+	$Shop.connect("s_skin_1", self, "Current_Skin")
+# warning-ignore:return_value_discarded
+	$Shop.connect("s_skin_2", self, "Current_Skin")
+	###
 	
 func _physics_process(delta):
 	var enemies = $Enemies.get_children()
@@ -212,6 +220,14 @@ func _paused_menu_pop_close():
 	
 	get_viewport().warp_mouse(player_pos)
 	get_tree().paused = false
+	
+
+func Current_Skin():
+	if skin_1_use == 1:
+		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_1_sprite)
+	elif skin_2_use ==1:
+		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_2_sprite)
+		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.15,0.12)
 
 
 func save(_world):
@@ -241,5 +257,4 @@ func load_file():
 		skin_2 = file.get_var()
 		skin_2_use = file.get_var()
 		file.close()
-
 

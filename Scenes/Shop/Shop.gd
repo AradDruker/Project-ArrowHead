@@ -8,6 +8,10 @@ var skin_1; var skin_2;
 var skin_1_use; var skin_2_use;
 var save_path = "user://data.save"
 
+
+signal s_skin_1
+signal s_skin_2
+
 func _ready():
 	load_file()
 	
@@ -26,10 +30,12 @@ func _ready():
 func _process(_delta):
 	if skin_1_use == 1:
 		$AnimationPlayer.play("Skin_1_Use")
+		emit_signal("s_skin_1")
 
 
 	if skin_2_use == 1:
 		$AnimationPlayer.play("Skin_2_Use")
+		emit_signal("s_skin_2")
 
 
 func load_file():

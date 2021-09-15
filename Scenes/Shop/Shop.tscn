@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Shop/ScrollContainer.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Shop/Panel_theme.tres" type="Theme" id=6]
 [ext_resource path="res://Assets/Characters/Player.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Characters/spaceRockets_002.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Skin_1_Use"
@@ -188,20 +189,6 @@ font_data = SubResource( 14 )
 size = 50
 font_data = SubResource( 14 )
 
-[sub_resource type="Environment" id=17]
-background_mode = 4
-dof_blur_near_enabled = true
-dof_blur_near_distance = 1.4
-glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/5 = false
-glow_intensity = 0.1
-glow_blend_mode = 1
-glow_hdr_threshold = 0.0
-glow_hdr_luminance_cap = 20.0
-glow_hdr_scale = 0.35
-
 [node name="Shop" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -332,7 +319,6 @@ __meta__ = {
 }
 
 [node name="Skin_1" type="Panel" parent="ScrollContainer/HBoxContainer"]
-self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
 margin_left = 39.0
 margin_right = 239.0
 margin_bottom = 260.0
@@ -361,7 +347,6 @@ __meta__ = {
 }
 
 [node name="Label1" type="Label" parent="ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button"]
-self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -403,8 +388,8 @@ __meta__ = {
 
 [node name="Skin_2" type="Sprite" parent="ScrollContainer/HBoxContainer/Skin_2"]
 position = Vector2( 100, 100 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 7 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 8 )
 
 [node name="Skin_2_Button" type="Button" parent="ScrollContainer/HBoxContainer/Skin_2"]
 self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
@@ -572,9 +557,6 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 17 )
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button" to="." method="_on_Skin_1_Button_pressed"]

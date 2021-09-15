@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 export (PackedScene) var World
 
+
+
 var velocity = Vector2(10.0,10.0)
 const MAX_SPEED = 12
 const ACCELERATION = 90
