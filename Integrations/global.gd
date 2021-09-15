@@ -8,7 +8,7 @@ var muteSFX_state = int(1)
 var coin_total = int(1000)
 var skin_1 = int(0); var skin_2 = int(0);
 var skin_1_use = int(0); var skin_2_use = int(0);
-
+var bonus_points = 100
 
 
 func _ready():
