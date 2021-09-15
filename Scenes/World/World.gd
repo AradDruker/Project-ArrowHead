@@ -190,7 +190,9 @@ func _on_PlayerKinematicBody2D_coin_collected():
 
 
 func _add_score():
-	score += 100
+	$BonusPointsTimer.start()
+	score += Global.bonus_points
+	Global.bonus_points += 50
 
 
 func _game_over():
@@ -258,3 +260,7 @@ func load_file():
 		skin_2_use = file.get_var()
 		file.close()
 
+
+
+func _on_BonusPointsTimer_timeout():
+	Global.bonus_points = 100

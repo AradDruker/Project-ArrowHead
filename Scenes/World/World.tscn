@@ -290,7 +290,11 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 10 )
 
+[node name="BonusPointsTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="coin_collected" from="PlayerKinematicBody2D" to="." method="_on_PlayerKinematicBody2D_coin_collected"]
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
 [connection signal="timeout" from="CoinSpawn" to="." method="_on_CoinSpawn_timeout"]
+[connection signal="timeout" from="BonusPointsTimer" to="." method="_on_BonusPointsTimer_timeout"]
