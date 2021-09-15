@@ -4,5 +4,5 @@
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
 [resource]
-size = 48
+size = 50
 font_data = SubResource( 1 )
