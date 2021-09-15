@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/Fonts/Montserrat-ExtraBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/Shop/Shop.gd" type="Script" id=2]
@@ -8,11 +8,11 @@
 [ext_resource path="res://Scenes/Shop/Panel_theme.tres" type="Theme" id=6]
 [ext_resource path="res://Assets/Characters/Player.png" type="Texture" id=7]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=1]
 resource_name = "Skin_1_Use"
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("ScrollContainer/HBoxContainer/Skin_1:modulate")
+tracks/0/path = NodePath("ScrollContainer/HBoxContainer/Skin_1:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -24,7 +24,7 @@ tracks/0/keys = {
 "values": [ Color( 0.203922, 0.541176, 0.0313726, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ScrollContainer/HBoxContainer/Skin_2:modulate")
+tracks/1/path = NodePath("ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -33,13 +33,37 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.203922, 0.541176, 0.0313726, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScrollContainer/HBoxContainer/Skin_2:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.815686, 0.835294, 0.85098, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.815686, 0.835294, 0.85098, 1 ) ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=2]
 resource_name = "Skin_2_Use"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ScrollContainer/HBoxContainer/Skin_1:modulate")
+tracks/0/path = NodePath("ScrollContainer/HBoxContainer/Skin_1:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -48,10 +72,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.815686, 0.835294, 0.85098, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("ScrollContainer/HBoxContainer/Skin_2:modulate")
+tracks/1/path = NodePath("ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -60,34 +84,58 @@ tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
+"values": [ Color( 0.815686, 0.835294, 0.85098, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ScrollContainer/HBoxContainer/Skin_2:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0.203922, 0.541176, 0.0313726, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
 "values": [ Color( 0.203922, 0.541176, 0.0313726, 1 ) ]
 }
 
-[sub_resource type="DynamicFontData" id=1]
+[sub_resource type="DynamicFontData" id=3]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 130
-font_data = SubResource( 1 )
+font_data = SubResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 50
 extra_spacing_char = 1
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
-draw_center = false
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.258824, 0.27451, 0.34902, 1 )
 border_width_left = 30
 border_width_top = 30
 border_width_right = 30
 border_width_bottom = 30
-border_color = Color( 0.768627, 0.768627, 0.768627, 1 )
+border_color = Color( 0.815686, 0.835294, 0.85098, 1 )
 corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
-[sub_resource type="Theme" id=5]
+[sub_resource type="Theme" id=7]
 TabContainer/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
 TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
@@ -103,14 +151,10 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 4 )
+TabContainer/styles/panel = SubResource( 6 )
 TabContainer/styles/tab_bg = null
 TabContainer/styles/tab_disabled = null
 TabContainer/styles/tab_fg = null
-
-[sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=8]
 
@@ -118,27 +162,45 @@ TabContainer/styles/tab_fg = null
 
 [sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="Theme" id=11]
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="Theme" id=13]
 HScrollBar/icons/decrement = null
 HScrollBar/icons/decrement_highlight = null
 HScrollBar/icons/increment = null
 HScrollBar/icons/increment_highlight = null
-HScrollBar/styles/grabber = SubResource( 6 )
-HScrollBar/styles/grabber_highlight = SubResource( 7 )
-HScrollBar/styles/grabber_pressed = SubResource( 8 )
-HScrollBar/styles/scroll = SubResource( 9 )
-HScrollBar/styles/scroll_focus = SubResource( 10 )
+HScrollBar/styles/grabber = SubResource( 8 )
+HScrollBar/styles/grabber_highlight = SubResource( 9 )
+HScrollBar/styles/grabber_pressed = SubResource( 10 )
+HScrollBar/styles/scroll = SubResource( 11 )
+HScrollBar/styles/scroll_focus = SubResource( 12 )
 
-[sub_resource type="DynamicFontData" id=12]
+[sub_resource type="DynamicFontData" id=14]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=15]
 size = 50
-font_data = SubResource( 12 )
+font_data = SubResource( 14 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=16]
 size = 50
-font_data = SubResource( 12 )
+font_data = SubResource( 14 )
+
+[sub_resource type="Environment" id=17]
+background_mode = 4
+dof_blur_near_enabled = true
+dof_blur_near_distance = 1.4
+glow_enabled = true
+glow_levels/1 = true
+glow_levels/2 = true
+glow_levels/5 = false
+glow_intensity = 0.1
+glow_blend_mode = 1
+glow_hdr_threshold = 0.0
+glow_hdr_luminance_cap = 20.0
+glow_hdr_scale = 0.35
 
 [node name="Shop" type="Control"]
 anchor_right = 1.0
@@ -149,8 +211,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Skin_1_Use = SubResource( 14 )
-anims/Skin_2_Use = SubResource( 19 )
+anims/Skin_1_Use = SubResource( 1 )
+anims/Skin_2_Use = SubResource( 2 )
 
 [node name="ShopTitle" type="VBoxContainer" parent="."]
 margin_left = 120.0
@@ -164,8 +226,9 @@ __meta__ = {
 [node name="Tital" type="Label" parent="ShopTitle"]
 margin_right = 1040.0
 margin_bottom = 147.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
+custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 5
 text = "Store"
@@ -180,7 +243,7 @@ anchor_right = 1.0
 margin_left = -200.0
 margin_bottom = 100.0
 focus_mode = 0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 flat = true
@@ -194,25 +257,13 @@ anchor_right = 1.0
 margin_left = -200.0
 margin_bottom = 100.0
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
+custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
+custom_constants/shadow_offset_y = 3
 text = "Back"
 align = 1
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CoinNumber" type="Label" parent="."]
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -120.0
-margin_bottom = -50.0
-custom_fonts/font = ExtResource( 3 )
-text = "Coins: "
-align = 1
-valign = 1
-__meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -223,8 +274,25 @@ margin_left = 50.0
 margin_top = 200.0
 margin_right = -50.0
 margin_bottom = -50.0
-theme = SubResource( 5 )
+theme = SubResource( 7 )
 tabs_visible = false
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CoinNumber" type="Label" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -120.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
+custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
+text = "Coins: "
+align = 1
+valign = 1
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
@@ -240,7 +308,7 @@ margin_right = -82.0
 margin_bottom = 220.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = SubResource( 11 )
+theme = SubResource( 13 )
 follow_focus = true
 script = ExtResource( 5 )
 __meta__ = {
@@ -264,6 +332,7 @@ __meta__ = {
 }
 
 [node name="Skin_1" type="Panel" parent="ScrollContainer/HBoxContainer"]
+self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
 margin_left = 39.0
 margin_right = 239.0
 margin_bottom = 260.0
@@ -280,7 +349,7 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = -80.0
+margin_top = -240.0
 margin_right = -20.0
 margin_bottom = -20.0
 focus_mode = 0
@@ -291,18 +360,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button"]
+[node name="Label1" type="Label" parent="ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button"]
+self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 margin_left = -61.5
-margin_top = -34.4142
+margin_top = -66.0
 margin_right = 61.5
-margin_bottom = 31.5858
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 15 )
 text = "100"
 align = 1
 valign = 1
@@ -322,6 +391,7 @@ __meta__ = {
 }
 
 [node name="Skin_2" type="Panel" parent="ScrollContainer/HBoxContainer"]
+self_modulate = Color( 0.815686, 0.835294, 0.85098, 1 )
 margin_left = 282.0
 margin_right = 482.0
 margin_bottom = 260.0
@@ -337,11 +407,12 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="Skin_2_Button" type="Button" parent="ScrollContainer/HBoxContainer/Skin_2"]
+self_modulate = Color( 0.203922, 0.541176, 0.0313726, 1 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
-margin_top = -80.0
+margin_top = -240.0
 margin_right = -20.0
 margin_bottom = -20.0
 focus_mode = 0
@@ -352,18 +423,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button"]
+[node name="Label2" type="Label" parent="ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button"]
+self_modulate = Color( 0.815686, 0.835294, 0.85098, 1 )
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 margin_left = -61.5
-margin_top = -33.0
+margin_top = -66.0
 margin_right = 61.5
-margin_bottom = 33.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 16 )
 text = "200"
 align = 1
 valign = 1
@@ -501,6 +572,9 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 17 )
 
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="pressed" from="ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button" to="." method="_on_Skin_1_Button_pressed"]
