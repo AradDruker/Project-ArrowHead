@@ -15,6 +15,8 @@ var coinRand = 0
 var lastCoinScore = 500
 var coinSprite = preload("res://Scenes/Coin/Coin.tscn")
 
+var player_pos
+
 var rng = RandomNumberGenerator.new()
 
 
@@ -23,7 +25,9 @@ func _ready():
 	randomize()
 	load_file()
 	#Sets mouse position to the center of the screen at game start
+# warning-ignore:shadowed_variable
 	var screen_size = get_viewport().size
+# warning-ignore:shadowed_variable
 	var screen_mid = Vector2(screen_size.x / 2, screen_size.y / 2)
 	get_viewport().warp_mouse(screen_mid)
 	
@@ -140,6 +144,12 @@ func reset_game():
 	$GameOverScreen/Popup.hide()
 	$HUD/ScoreBox.show()
 	$HUD/Reset/HBoxContainer/PauseButton.show()
+	
+	# warning-ignore:shadowed_variable
+	var screen_size = get_viewport().size
+# warning-ignore:shadowed_variable
+	var screen_mid = Vector2(screen_size.x / 2, screen_size.y / 2)
+	get_viewport().warp_mouse(screen_mid)
 	get_tree().paused = false
 	
 
@@ -192,16 +202,19 @@ func _return_title():
 func _paused_menu_pop():
 	$PausedMenu/Popup.show()
 	$PausedMenu/Background.show()
+	player_pos = get_viewport().get_mouse_position()
 	get_tree().paused = true
 
 
 func _paused_menu_pop_close():
 	$PausedMenu/Popup.hide()
 	$PausedMenu/Background.hide()
+	
+	get_viewport().warp_mouse(player_pos)
 	get_tree().paused = false
 
 
-func save(_shop):
+func save(_world):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	file.store_var(highScore)
