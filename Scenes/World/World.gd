@@ -116,17 +116,45 @@ func create_enemy():
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	rng.randomize()
-	var my_random_number = rng.randf_range(4,6)
+	var my_random_number = rng.randf_range(2,3)
 	for _i in my_random_number:
 		var enemy = create_enemy()
 		$Enemies.add_child(enemy)
-		
-		
-		
+
+
+
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 5 + 3):
-		var enemy = create_enemy()
-		$Enemies.add_child(enemy)
+	rng.randomize()
+	if score >= 0 and score <=4000:
+		var my_random_number = rng.randf_range(2,3)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 4000 and score <= 8000:
+		var my_random_number = rng.randf_range(3,4)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 8000 and score <= 12000:
+		var my_random_number = rng.randf_range(4,5)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 16000 and score <= 20000:
+		var my_random_number = rng.randf_range(5,6)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 24000 and score <= 28000:
+		var my_random_number = rng.randf_range(6,7)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 32000:
+		var my_random_number = rng.randf_range(7,8)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
 
 
 func reset_game():
@@ -227,9 +255,10 @@ func _paused_menu_pop_close():
 func Current_Skin():
 	if skin_1_use == 1:
 		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_1_sprite)
+		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.8,0.8)
 	elif skin_2_use ==1:
 		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_2_sprite)
-		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.15,0.12)
+		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.2,0.18)
 
 
 func save(_world):
