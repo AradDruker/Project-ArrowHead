@@ -31,8 +31,8 @@ func _ready():
 # warning-ignore:shadowed_variable
 	var screen_size = get_viewport().size
 # warning-ignore:shadowed_variable
-	var screen_mid = Vector2(screen_size.x / 2, screen_size.y / 2)
-	get_viewport().warp_mouse(screen_mid)
+	var start_pos = Vector2(640.0, 360.0)
+	get_viewport().warp_mouse(start_pos)
 	
 	### Signals for buttons
 # warning-ignore:return_value_discarded
