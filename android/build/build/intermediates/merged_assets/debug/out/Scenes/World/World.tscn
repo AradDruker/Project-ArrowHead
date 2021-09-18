@@ -237,7 +237,7 @@ __meta__ = {
 }
 
 [node name="Field" type="TextureRect" parent="."]
-modulate = Color( 0.45098, 0.27451, 0.337255, 0.27451 )
+modulate = Color( 0.45098, 0.27451, 0.337255, 0.431373 )
 margin_left = -141.102
 margin_top = -548.471
 margin_right = 1427.9
@@ -266,13 +266,13 @@ z_index = 1
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemySpawn" type="Timer" parent="."]
-wait_time = 2.5
+[node name="EnemySpawnInstant" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 autostart = true
 
-[node name="EnemySpawnInstant" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
+[node name="EnemySpawn" type="Timer" parent="."]
+wait_time = 3.5
 autostart = true
 
 [node name="PausedMenu" parent="." instance=ExtResource( 8 )]
@@ -290,7 +290,11 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 10 )
 
+[node name="BonusPointsTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="coin_collected" from="PlayerKinematicBody2D" to="." method="_on_PlayerKinematicBody2D_coin_collected"]
-[connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="EnemySpawnInstant" to="." method="_on_EnemySpawnInstant_timeout"]
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="CoinSpawn" to="." method="_on_CoinSpawn_timeout"]
+[connection signal="timeout" from="BonusPointsTimer" to="." method="_on_BonusPointsTimer_timeout"]
