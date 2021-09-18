@@ -60,9 +60,8 @@ func _physics_process(delta):
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
-				velocity = velocity.bounce(collision.normal) * 3
+				velocity = velocity.bounce(collision.normal) * 1.5
 				MOVE = false
-#				$BouneTimer.start()
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -76,16 +75,15 @@ func _physics_process(delta):
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = PI - ang
 		var collision = move_and_collide(velocity)
-		if velocity.length() < 2:
+		if velocity.length() < 14:
 			MOVE = true
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
-				velocity = velocity.bounce(collision.normal) * 3
+				velocity = velocity.bounce(collision.normal) * 1.5
 				velocity = velocity.clamped(MAX_SPEED)
 				MOVE = false
-#				$BouneTimer.start()
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -94,9 +92,3 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
-
-
-
-func _on_BouneTimer_timeout():
-	pass
-#	MOVE = true

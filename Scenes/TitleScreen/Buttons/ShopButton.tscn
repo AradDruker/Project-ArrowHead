@@ -6,7 +6,6 @@
 margin_top = 300.0
 margin_right = 140.0
 margin_bottom = 360.0
-rect_min_size = Vector2( 140, 60 )
 scene_to_load = "res://Scenes/Shop/Shop.tscn"
 
 [node name="Label" parent="." index="0"]

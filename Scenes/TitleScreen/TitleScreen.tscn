@@ -93,7 +93,7 @@ glow_enabled = true
 glow_levels/1 = true
 glow_levels/2 = true
 glow_levels/5 = false
-glow_intensity = 0.05
+glow_intensity = 0.03
 glow_blend_mode = 1
 glow_hdr_threshold = 0.0
 glow_hdr_luminance_cap = 20.0
@@ -104,15 +104,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 5 )
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color( 2.31, 1.16, 0, 1 )
-margin_left = 728.0
-margin_top = 379.0
+margin_left = 727.0
+margin_top = 357.0
 margin_right = 1074.0
-margin_bottom = 614.0
+margin_bottom = 593.0
 texture = ExtResource( 8 )
 expand = true
 __meta__ = {
@@ -120,14 +121,13 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 557.979
-margin_top = 306.524
-margin_right = 1113.98
-margin_bottom = 628.524
+margin_left = 578.0
+margin_top = 310.0
+margin_right = 1095.0
+margin_bottom = 593.0
 texture = ExtResource( 7 )
 expand = true
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -152,6 +152,16 @@ custom_constants/shadow_offset_y = 5
 text = "Project V"
 align = 1
 
+[node name="Spacer" type="Label" parent="Menu"]
+visible = false
+margin_top = 151.0
+margin_right = 1040.0
+margin_bottom = 191.0
+rect_min_size = Vector2( 0, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="HighScore" type="Label" parent="Menu"]
 margin_top = 151.0
 margin_right = 1040.0
@@ -163,56 +173,47 @@ custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
 custom_constants/shadow_offset_y = 5
 text = "highscore:"
 align = 1
-valign = 2
-
-[node name="Spacer" type="Label" parent="Menu"]
-margin_top = 225.0
-margin_right = 1040.0
-margin_bottom = 265.0
-rect_min_size = Vector2( 0, 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+valign = 1
 
 [node name="CenterRow" type="HBoxContainer" parent="Menu"]
-margin_top = 269.0
+margin_top = 225.0
 margin_right = 1040.0
-margin_bottom = 560.0
+margin_bottom = 565.0
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="Menu/CenterRow"]
 margin_right = 518.0
-margin_bottom = 291.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 20
 alignment = 1
 
 [node name="NewGameButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 1 )]
-margin_top = 5.0
-margin_right = 300.0
-margin_bottom = 85.0
-rect_min_size = Vector2( 300, 80 )
+margin_top = 0.0
+margin_right = 420.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 420, 100 )
 size_flags_horizontal = 0
 
 [node name="ShopButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 3 )]
-margin_top = 105.0
-margin_right = 145.0
-margin_bottom = 185.0
-rect_min_size = Vector2( 145, 80 )
+margin_top = 120.0
+margin_right = 200.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 0
 
 [node name="OptionsButton" parent="Menu/CenterRow/Buttons" instance=ExtResource( 2 )]
-margin_top = 205.0
-margin_right = 220.0
-margin_bottom = 285.0
-rect_min_size = Vector2( 220, 80 )
+margin_top = 240.0
+margin_right = 310.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 310, 100 )
 size_flags_horizontal = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="Menu/CenterRow"]
 margin_left = 522.0
 margin_right = 1040.0
-margin_bottom = 291.0
+margin_bottom = 340.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -221,9 +222,9 @@ __meta__ = {
 
 [node name="TabContainer" type="TabContainer" parent="Menu/CenterRow/CenterContainer"]
 margin_left = 109.0
-margin_top = 52.0
+margin_top = 76.0
 margin_right = 409.0
-margin_bottom = 239.0
+margin_bottom = 263.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
@@ -249,10 +250,9 @@ text = "
                                                                       "
 
 [node name="Spacer3" type="Label" parent="Menu"]
-visible = false
-margin_top = 553.0
+margin_top = 569.0
 margin_right = 1040.0
-margin_bottom = 593.0
+margin_bottom = 609.0
 rect_min_size = Vector2( 0, 40 )
 __meta__ = {
 "_edit_use_anchors_": false
