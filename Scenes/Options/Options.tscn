@@ -5,33 +5,25 @@
 [ext_resource path="res://Scenes/Options/Options.gd" type="Script" id=3]
 [ext_resource path="res://Assets/icons/checkmark.png" type="Texture" id=4]
 [ext_resource path="res://Assets/icons/checkmark (1).png" type="Texture" id=5]
-[ext_resource path="res://Assets/Fonts/dynamicfont_1.tres" type="DynamicFont" id=6]
+
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 120
+font_data = SubResource( 2 )
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
-[sub_resource type="DynamicFont" id=2]
-size = 120
+[sub_resource type="DynamicFont" id=4]
+size = 70
 font_data = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=5]
 size = 70
 extra_spacing_char = 1
 font_data = ExtResource( 2 )
-
-[sub_resource type="Environment" id=4]
-background_mode = 4
-dof_blur_near_enabled = true
-dof_blur_near_distance = 1.4
-glow_enabled = true
-glow_levels/1 = true
-glow_levels/2 = true
-glow_levels/5 = false
-glow_intensity = 0.1
-glow_blend_mode = 1
-glow_hdr_threshold = 0.0
-glow_hdr_luminance_cap = 20.0
-glow_hdr_scale = 0.35
 
 [node name="Options" type="Control"]
 anchor_right = 1.0
@@ -55,7 +47,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Menu"]
 margin_right = 1040.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
 custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
 custom_constants/shadow_offset_y = 5
@@ -139,7 +131,7 @@ margin_right = -100.0
 margin_bottom = -100.0
 rect_min_size = Vector2( 200, 80 )
 focus_mode = 0
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
 custom_colors/font_color_pressed = Color( 0.258824, 0.27451, 0.34902, 1 )
 enabled_focus_mode = 0
@@ -152,7 +144,7 @@ __meta__ = {
 margin_top = -1.33484
 margin_right = 200.0
 margin_bottom = 78.6652
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
 custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
 custom_constants/shadow_offset_y = 5
@@ -162,9 +154,6 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
 
 [connection signal="pressed" from="Menu/CenterRow/Buttons/MuteMusic" to="." method="_on_MuteMusic_pressed"]
 [connection signal="pressed" from="Menu/CenterRow/Buttons/MuteSFX" to="." method="_on_MuteSFX_pressed"]
