@@ -2,6 +2,10 @@ extends Node
 
 export (PackedScene) var Enemy
 
+var skin_1_sprite = preload("res://Assets/Characters/Player.png")
+var skin_2_sprite = preload("res://Assets/Characters/spaceRockets_002.png")
+
+var level = 1
 var score = 0
 var highScore = 0
 var coin_total
@@ -15,6 +19,8 @@ var coinRand = 0
 var lastCoinScore = 500
 var coinSprite = preload("res://Scenes/Coin/Coin.tscn")
 
+var player_pos
+
 var rng = RandomNumberGenerator.new()
 
 
@@ -22,6 +28,13 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	randomize()
 	load_file()
+	#Sets mouse position to the center of the screen at game start
+# warning-ignore:unused_variable
+	var screen_size = get_viewport().size
+# warning-ignore:shadowed_variable
+	var start_pos = Vector2(640.0, 360.0)
+	get_viewport().warp_mouse(start_pos)
+	
 	### Signals for buttons
 # warning-ignore:return_value_discarded
 	$HUD.connect("pause_pressed", self,"_paused_menu_pop")
@@ -38,7 +51,12 @@ func _ready():
 # warning-ignore:return_value_discarded
 	$PlayerKinematicBody2D.connect("game_over", self, "_game_over")
 	###
-
+	### Signals for Skins
+# warning-ignore:return_value_discarded
+	$Shop.connect("s_skin_1", self, "Current_Skin")
+# warning-ignore:return_value_discarded
+	$Shop.connect("s_skin_2", self, "Current_Skin")
+	###
 	
 func _physics_process(delta):
 	var enemies = $Enemies.get_children()
@@ -63,7 +81,6 @@ func _physics_process(delta):
 			en.player_details($PlayerKinematicBody2D.position)
 
 
-
 func _process(_delta):
 	
 	# Lets you exit the game with the escape key - Mainly for debugging comfort
@@ -76,6 +93,8 @@ func _process(_delta):
 	#Coins UI
 	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
 	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
+	
+
 
 
 
@@ -99,23 +118,53 @@ func create_enemy():
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	rng.randomize()
-	var my_random_number = rng.randf_range(4,6)
+	var my_random_number = rng.randf_range(2,3)
 	for _i in my_random_number:
 		var enemy = create_enemy()
 		$Enemies.add_child(enemy)
-		
-		
-		
+
+
+
 func _on_EnemySpawn_timeout():
-	for _i in range(randi() % 5 + 3):
-		var enemy = create_enemy()
-		$Enemies.add_child(enemy)
+	#score <= -50 for music pitch sync
+	rng.randomize()
+	if score >= 0 and score <= 5000:
+		var my_random_number = rng.randf_range(2,3)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 5000 and score <= 10000:
+		var my_random_number = rng.randf_range(3,4)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 10000 and score <= 15000:
+		var my_random_number = rng.randf_range(4,5)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 15000 and score <= 20000:
+		var my_random_number = rng.randf_range(5,6)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 20000 and score <= 25000:
+		var my_random_number = rng.randf_range(6,7)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 25000:
+		var my_random_number = rng.randf_range(7,8)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
 
 
 func reset_game():
 	# Reset the game method
 	# Need to reset the score
 	
+	$LevelUp.stop()
 	$EnemySpawn.stop()
 	$EnemySpawnInstant.stop()
 	$PlayerKinematicBody2D.position = Vector2(640.0, 360.0)
@@ -128,13 +177,26 @@ func reset_game():
 		coin.queue_free()
 	
 	###
+	
+	$LevelUp.start()
 	$EnemySpawn.start()
 	$EnemySpawnInstant.start()
 	$PausedMenu/Popup.hide()
 	$PausedMenu/Background.hide()
 	$GameOverScreen/Popup.hide()
 	$HUD/ScoreBox.show()
-	$HUD/Reset/HBoxContainer/PauseButton.show()
+	$HUD/PauseButton.show()
+	
+	level = 1
+	Music.get_node("BackgoundMusic").pitch_scale = 1
+	$Background.modulate = Color(2.31,1.77,0)
+	$Borders.modulate = Color(2.5,0,0)
+	
+	# warning-ignore:shadowed_variable
+	var screen_size = get_viewport().size
+# warning-ignore:shadowed_variable
+	var screen_mid = Vector2(screen_size.x / 2, screen_size.y / 2)
+	get_viewport().warp_mouse(screen_mid)
 	get_tree().paused = false
 	
 
@@ -167,7 +229,9 @@ func _on_PlayerKinematicBody2D_coin_collected():
 
 
 func _add_score():
-	score += 100
+	$BonusPointsTimer.start()
+	score += Global.bonus_points
+	Global.bonus_points += 50
 
 
 func _game_over():
@@ -175,28 +239,42 @@ func _game_over():
 	$PausedMenu/Background.show()
 	$GameOverScreen/Popup.show()
 	$HUD/ScoreBox.hide()
-	$HUD/Reset/HBoxContainer/PauseButton.hide()
+	$HUD/PauseButton.hide()
+	Music.get_node("BackgoundMusic").pitch_scale = 1
 	get_tree().paused = true
 
 
 func _return_title():
 # warning-ignore:return_value_discarded
 	get_tree().change_scene("res://Scenes/TitleScreen/TitleScreen.tscn")
+	Music.get_node("BackgoundMusic").pitch_scale = 1
 
 
 func _paused_menu_pop():
 	$PausedMenu/Popup.show()
 	$PausedMenu/Background.show()
+	player_pos = get_viewport().get_mouse_position()
 	get_tree().paused = true
 
 
 func _paused_menu_pop_close():
 	$PausedMenu/Popup.hide()
 	$PausedMenu/Background.hide()
+	
+	get_viewport().warp_mouse(player_pos)
 	get_tree().paused = false
+	
+
+func Current_Skin():
+	if skin_1_use == 1:
+		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_1_sprite)
+		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(1,1.2)
+	elif skin_2_use ==1:
+		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_2_sprite)
+		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.30,0.20)
 
 
-func save(_shop):
+func save(_world):
 	var file = File.new()
 	file.open_encrypted_with_pass(save_path, File.WRITE, "Porfpo12")
 	file.store_var(highScore)
@@ -225,3 +303,49 @@ func load_file():
 		file.close()
 
 
+
+func _on_BonusPointsTimer_timeout():
+	Global.bonus_points = 100
+
+
+func _on_LevelUp_timeout():
+	if level == 1:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.02
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(1,1,1)
+		$Borders.modulate = Color(1,1,1)
+	elif level == 2:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.04
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(2,1.5,2)
+		$Borders.modulate = Color(2,1.5,2)
+	elif level == 3:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.06
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(1,1,0.5)
+		$Borders.modulate = Color(1,1,0.5)
+	elif level == 4:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.08
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(5,1.5,1)
+		$Borders.modulate = Color(5,1.5,1)
+	elif level == 5:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.1
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(0,0,1)
+		$Borders.modulate = Color(0,0,1)
+	elif level == 6:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.12
+		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(0,1,0)
+		$Borders.modulate = Color(0,1,0)
+
+
+func _on_AnimationPlayer_animation_finished(_anim_name):
+	$HUD/AnimationPlayer.play("show_LevelUp")

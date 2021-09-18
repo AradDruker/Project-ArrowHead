@@ -8,28 +8,34 @@ var skin_1; var skin_2;
 var skin_1_use; var skin_2_use;
 var save_path = "user://data.save"
 
+
+signal s_skin_1
+signal s_skin_2
+
 func _ready():
 	load_file()
 	
 	$CoinNumber.text = "Coins: " + str(coin_total)
 
 	if skin_1 == 1:
-		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label.text = "Owned"
-		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label.get("custom_fonts/font").set_size(35)
+		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1.text = "Owned"
+		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1.get("custom_fonts/font").set_size(35)
 
 	if skin_2 == 1:
-		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label.text = "Owned"
-		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label.get("custom_fonts/font").set_size(35)
+		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2.text = "Owned"
+		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2.get("custom_fonts/font").set_size(35)
 
 
 
 func _process(_delta):
 	if skin_1_use == 1:
 		$AnimationPlayer.play("Skin_1_Use")
+		emit_signal("s_skin_1")
 
 
 	if skin_2_use == 1:
 		$AnimationPlayer.play("Skin_2_Use")
+		emit_signal("s_skin_2")
 
 
 func load_file():
@@ -69,7 +75,7 @@ func _on_BackButton_pressed():
 	
 func _on_Skin_1_Button_pressed():
 	if skin_1 == 1:
-		if $ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label.text == "Owned":
+		if $ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1.text == "Owned":
 			skin_1_use = 1
 			skin_2_use = 0
 			save(skin_1_use)
@@ -77,8 +83,8 @@ func _on_Skin_1_Button_pressed():
 		else:
 			pass
 	elif coin_total >= 100:
-		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label.text = "Owned"
-		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label.get("custom_fonts/font").set_size(35)
+		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1.text = "Owned"
+		$ScrollContainer/HBoxContainer/Skin_1/Skin_1_Button/Label1.get("custom_fonts/font").set_size(35)
 		coin_total = coin_total - 100
 		skin_1 = 1
 		skin_1_use = 1
@@ -92,7 +98,7 @@ func _on_Skin_1_Button_pressed():
 
 func _on_Skin_2_Button_pressed():
 	if skin_2 == 1:
-		if $ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label.text == "Owned":
+		if $ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2.text == "Owned":
 			skin_1_use = 0
 			skin_2_use = 1
 			save(skin_1_use)
@@ -100,8 +106,8 @@ func _on_Skin_2_Button_pressed():
 		else:
 			pass
 	elif coin_total >= 200:
-		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label.text = "Owned"
-		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label.get("custom_fonts/font").set_size(35)
+		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2.text = "Owned"
+		$ScrollContainer/HBoxContainer/Skin_2/Skin_2_Button/Label2.get("custom_fonts/font").set_size(35)
 		coin_total = coin_total - 200
 		skin_2 = 1
 		skin_1_use = 0

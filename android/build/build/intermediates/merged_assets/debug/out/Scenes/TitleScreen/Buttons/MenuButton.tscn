@@ -20,8 +20,9 @@ margin_right = 1040.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 360, 60 )
 custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color_shadow = Color( 0.768627, 0.768627, 0.768627, 1 )
-custom_constants/shadow_offset_y = 3
+custom_colors/font_color = Color( 0.815686, 0.835294, 0.85098, 1 )
+custom_colors/font_color_shadow = Color( 0.258824, 0.27451, 0.34902, 1 )
+custom_constants/shadow_offset_y = 5
 text = "LABEL"
 __meta__ = {
 "_edit_use_anchors_": false

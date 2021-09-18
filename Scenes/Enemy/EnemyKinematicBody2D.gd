@@ -54,6 +54,7 @@ func _physics_process(delta):
 
 func explode():
 	MOVE = false
+	$Label.set_text("+" + str(Global.bonus_points))
 	$AnimationPlayer.play("Explosion")
 	Music.get_node("Explosion").play()
 

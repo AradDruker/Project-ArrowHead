@@ -29,7 +29,7 @@ Music="*res://Scenes/Music/Music.tscn"
 window/size/width=1280
 window/size/height=720
 window/stretch/mode="viewport"
-
+window/stretch/aspect="keep"
 
 [input_devices]
 
@@ -51,6 +51,6 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
-environment/default_clear_color=Color( 0.14902, 0.192157, 0.219608, 1 )
+environment/default_clear_color=Color( 0.254902, 0.0470588, 0.0470588, 1 )
 environment/default_environment="res://Integrations/default_env.tres"
 quality/dynamic_fonts/use_oversampling=false
