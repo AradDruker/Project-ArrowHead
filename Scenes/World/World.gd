@@ -118,26 +118,26 @@ func create_enemy():
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	rng.randomize()
-	var my_random_number = rng.randf_range(2,3)
-	for _i in my_random_number:
-		var enemy = create_enemy()
-		$Enemies.add_child(enemy)
+#	var my_random_number = rng.randf_range(2,3)
+#	for _i in my_random_number:
+#		var enemy = create_enemy()
+#		$Enemies.add_child(enemy)
 
 
 
 func _on_EnemySpawn_timeout():
 	#score <= -50 for music pitch sync
 	rng.randomize()
-	if score >= 0 and score <= 5000:
-		var my_random_number = rng.randf_range(2,3)
-		for _i in my_random_number:
-			var enemy = create_enemy()
-			$Enemies.add_child(enemy)
-	if score > 5000 and score <= 10000:
-		var my_random_number = rng.randf_range(3,4)
-		for _i in my_random_number:
-			var enemy = create_enemy()
-			$Enemies.add_child(enemy)
+#	if score >= 0 and score <= 5000:
+#		var my_random_number = rng.randf_range(2,3)
+#		for _i in my_random_number:
+#			var enemy = create_enemy()
+#			$Enemies.add_child(enemy)
+#	if score > 5000 and score <= 10000:
+#		var my_random_number = rng.randf_range(3,4)
+#		for _i in my_random_number:
+#			var enemy = create_enemy()
+#			$Enemies.add_child(enemy)
 	if score > 10000 and score <= 15000:
 		var my_random_number = rng.randf_range(4,5)
 		for _i in my_random_number:
@@ -313,6 +313,7 @@ func _on_LevelUp_timeout():
 		level += 1
 		Music.get_node("BackgoundMusic").pitch_scale = 1.02
 		$AnimationPlayer.play("Background_change")
+		Music.get_node("LevelUp").play()
 		$Background.modulate = Color(1,1,1)
 		$Borders.modulate = Color(1,1,1)
 	elif level == 2:
@@ -321,31 +322,49 @@ func _on_LevelUp_timeout():
 		$AnimationPlayer.play("Background_change")
 		$Background.modulate = Color(2,1.5,2)
 		$Borders.modulate = Color(2,1.5,2)
+		Music.get_node("LevelUp").play()
 	elif level == 3:
 		level += 1
 		Music.get_node("BackgoundMusic").pitch_scale = 1.06
 		$AnimationPlayer.play("Background_change")
-		$Background.modulate = Color(1,1,0.5)
+		$Background.modulate = Color(0.5,5,0.5)
 		$Borders.modulate = Color(1,1,0.5)
+		Music.get_node("LevelUp").play()
 	elif level == 4:
 		level += 1
 		Music.get_node("BackgoundMusic").pitch_scale = 1.08
 		$AnimationPlayer.play("Background_change")
 		$Background.modulate = Color(5,1.5,1)
 		$Borders.modulate = Color(5,1.5,1)
+		Music.get_node("LevelUp").play()
 	elif level == 5:
 		level += 1
 		Music.get_node("BackgoundMusic").pitch_scale = 1.1
 		$AnimationPlayer.play("Background_change")
 		$Background.modulate = Color(0,0,1)
 		$Borders.modulate = Color(0,0,1)
+		Music.get_node("LevelUp").play()
 	elif level == 6:
 		level += 1
 		Music.get_node("BackgoundMusic").pitch_scale = 1.12
 		$AnimationPlayer.play("Background_change")
+		$Background.modulate = Color(0.58,0.64,0)
+		$Borders.modulate = Color(2.31,1.77,0)
+		Music.get_node("LevelUp").play()
+	elif level == 7:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.14
+		$AnimationPlayer.play("Background_change")
 		$Background.modulate = Color(0,1,0)
 		$Borders.modulate = Color(0,1,0)
+		Music.get_node("LevelUp").play()
+	elif level == 8:
+		level += 1
+		Music.get_node("BackgoundMusic").pitch_scale = 1.14
+		$AnimationPlayer.play("Background_change")
+		$AnimationPlayer2.play("last_level")
+		Music.get_node("LevelUp").play()
 
 
-func _on_AnimationPlayer_animation_finished(_anim_name):
+func _on_AnimationPlayer_animation_finished(_Background_change):
 	$HUD/AnimationPlayer.play("show_LevelUp")

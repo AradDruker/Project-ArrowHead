@@ -75,7 +75,7 @@ func _physics_process(delta):
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = PI - ang
 		var collision = move_and_collide(velocity)
-		if velocity.length() < 14:
+		if velocity.length() < 15:
 			MOVE = true
 		if collision:
 			var collided_shape = collision.get_collider_shape()

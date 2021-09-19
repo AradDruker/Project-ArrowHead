@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Audio/SkyFire (Title Screen).ogg" type="AudioStream" id=1]
 [ext_resource path="res://Assets/Audio/forceField_000.ogg" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Audio/bong_001.ogg" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Audio/584246__smokinghotdog__game-over-fail-scratch-[AudioTrimmer.com]-[AudioTrimmer.com].wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Audio/coin_pick.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Audio/Powerup3.wav" type="AudioStream" id=7]
 
 [node name="Music" type="Node"]
 pause_mode = 2
@@ -38,4 +39,9 @@ bus = "SFX"
 [node name="CoinPick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -22.0
+bus = "SFX"
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -15.0
 bus = "SFX"
