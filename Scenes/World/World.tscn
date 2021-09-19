@@ -210,7 +210,7 @@ autostart = true
 wait_time = 0.5
 
 [node name="LevelUp" type="Timer" parent="."]
-wait_time = 20.0
+wait_time = 5.0
 autostart = true
 
 [node name="PausedMenu" parent="." instance=ExtResource( 8 )]

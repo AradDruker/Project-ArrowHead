@@ -118,26 +118,25 @@ func create_enemy():
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
 	rng.randomize()
-#	var my_random_number = rng.randf_range(2,3)
-#	for _i in my_random_number:
-#		var enemy = create_enemy()
-#		$Enemies.add_child(enemy)
+	var my_random_number = rng.randf_range(2,3)
+	for _i in my_random_number:
+		var enemy = create_enemy()
+		$Enemies.add_child(enemy)
 
 
 
 func _on_EnemySpawn_timeout():
-	#score <= -50 for music pitch sync
 	rng.randomize()
-#	if score >= 0 and score <= 5000:
-#		var my_random_number = rng.randf_range(2,3)
-#		for _i in my_random_number:
-#			var enemy = create_enemy()
-#			$Enemies.add_child(enemy)
-#	if score > 5000 and score <= 10000:
-#		var my_random_number = rng.randf_range(3,4)
-#		for _i in my_random_number:
-#			var enemy = create_enemy()
-#			$Enemies.add_child(enemy)
+	if score >= 0 and score <= 5000:
+		var my_random_number = rng.randf_range(2,3)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
+	if score > 5000 and score <= 10000:
+		var my_random_number = rng.randf_range(3,4)
+		for _i in my_random_number:
+			var enemy = create_enemy()
+			$Enemies.add_child(enemy)
 	if score > 10000 and score <= 15000:
 		var my_random_number = rng.randf_range(4,5)
 		for _i in my_random_number:
