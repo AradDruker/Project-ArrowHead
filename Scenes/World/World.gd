@@ -93,7 +93,7 @@ func _process(_delta):
 	#Coins UI
 	$PausedMenu/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
 	$GameOverScreen/Popup/Menu/Coins.text = "Total Coins: " + str(coin_total)
-	
+
 
 
 

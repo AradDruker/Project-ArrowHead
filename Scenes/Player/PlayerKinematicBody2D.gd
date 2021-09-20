@@ -12,6 +12,10 @@ const FRICTION_1 = 50
 const FRICTION_2 = 45
 const FRICTION_3 = 40
 onready var MOVE = true
+onready var STATE = 0
+var player_pressed = false
+var swipe_start_position = Vector2()
+var pull_vector = Vector2()
 
 signal game_over
 signal coin_collected
@@ -20,7 +24,8 @@ func _ready():
 	position = Vector2(640.0, 360.0)
 
 func _physics_process(delta):
-	if MOVE:
+	if STATE == 0:
+		# Player Follows the mouse/pointer
 		# Input Collection - Player follows pointer.
 		var input_vector = Vector2(position.x, position.y)
 		var mouse_pos =  get_viewport().get_mouse_position()
@@ -61,7 +66,8 @@ func _physics_process(delta):
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
 				velocity = velocity.bounce(collision.normal) * 1.5
-				MOVE = false
+#				MOVE = false
+				STATE = 1
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -70,20 +76,24 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
-	else:
+	elif STATE == 1:
+		#Player can't control the movement
+		# When the player bumps the walls
 		velocity = velocity * FRICTION_0 * delta
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = PI - ang
 		var collision = move_and_collide(velocity)
 		if velocity.length() < 15:
-			MOVE = true
+#			MOVE = true
+			STATE = 0
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
 				velocity = velocity.bounce(collision.normal) * 1.5
 				velocity = velocity.clamped(MAX_SPEED)
-				MOVE = false
+#				MOVE = false
+				STATE = 1
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -92,3 +102,22 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
+					
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.position.distance_to(self.position) < 200 and not player_pressed:
+				print("player pressed")
+				player_pressed = true
+				swipe_start_position = self.position
+				STATE = 3
+			else:
+				STATE = 1
+		else:
+			if player_pressed:
+				print("released")
+				var mouse_drag = get_viewport().get_mouse_position()
+				velocity = (mouse_drag - swipe_start_position) * 0.1
+				STATE = 1
+				player_pressed = false
+			
