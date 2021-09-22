@@ -33,7 +33,7 @@ func _ready():
 	var screen_size = get_viewport().size
 # warning-ignore:shadowed_variable
 	var start_pos = Vector2(640.0, 360.0)
-	get_viewport().warp_mouse(start_pos)
+#	get_viewport().warp_mouse(start_pos)
 	
 	### Signals for buttons
 # warning-ignore:return_value_discarded
