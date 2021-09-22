@@ -17,6 +17,7 @@ var player_pressed = false
 var swipe_start_position = Vector2()
 var pull_vector = Vector2()
 var continue_move_after_state_one = false
+var pulling
 
 signal game_over
 signal coin_collected
@@ -26,8 +27,10 @@ func _ready():
 
 func _physics_process(delta):
 	if STATE == 0:
+		
 		# Player Follows the mouse/pointer
 		# Input Collection - Player follows pointer.
+		
 		var input_vector = Vector2(position.x, position.y)
 		var mouse_pos =  get_viewport().get_mouse_position()
 		input_vector = input_vector.direction_to(mouse_pos)
@@ -62,6 +65,7 @@ func _physics_process(delta):
 		
 		# Bumps player if hits wall
 		var collision = move_and_collide(velocity)
+		# Coliison check
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
@@ -69,6 +73,7 @@ func _physics_process(delta):
 				velocity = velocity.bounce(collision.normal) * 1.5
 #				MOVE = false
 				STATE = 1
+				# For logic purposes 
 				continue_move_after_state_one = true
 			else:
 				if "Coin" in collision.collider.name:
@@ -78,6 +83,7 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
+	
 	elif STATE == 1:
 		#Player can't control the movement
 		# Happens When the player bumps the walls
@@ -90,13 +96,17 @@ func _physics_process(delta):
 		if velocity.length() < 15 and continue_move_after_state_one:
 			STATE = 0
 			continue_move_after_state_one = false
+			pulling = false
+			
+		# Coliison check
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
 				velocity = velocity.bounce(collision.normal) * 1.5
 				velocity = velocity.clamped(MAX_SPEED)
-				continue_move_after_state_one = true
+				if not pulling:
+					continue_move_after_state_one = true
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -130,4 +140,5 @@ func _input(event):
 				velocity = velocity.rotated(PI)
 				STATE = 1
 				player_pressed = false
+				pulling = true
 			
