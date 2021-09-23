@@ -12,16 +12,26 @@ const FRICTION_1 = 50
 const FRICTION_2 = 45
 const FRICTION_3 = 40
 onready var MOVE = true
+onready var STATE = -1 # 0 for normal movement 1 for un controlled movement
+var player_pressed = false
+var swipe_start_position = Vector2()
+var pull_vector = Vector2()
+var continue_move_after_state_one = false
+var pulling
 
 signal game_over
 signal coin_collected
 
 func _ready():
 	position = Vector2(640.0, 360.0)
+	
 
 func _physics_process(delta):
-	if MOVE:
+	if STATE == 0:
+		
+		# Player Follows the mouse/pointer
 		# Input Collection - Player follows pointer.
+		
 		var input_vector = Vector2(position.x, position.y)
 		var mouse_pos =  get_viewport().get_mouse_position()
 		input_vector = input_vector.direction_to(mouse_pos)
@@ -33,7 +43,7 @@ func _physics_process(delta):
 			velocity = velocity.clamped(MAX_SPEED)
 			var ang = atan2(velocity.x, velocity.y)
 			$PlayerSprite.rotation = PI - ang
-	#
+			
 		#Player stops
 		#else:
 		#	velocity -= velocity * FRICTION * delta
@@ -56,12 +66,16 @@ func _physics_process(delta):
 		
 		# Bumps player if hits wall
 		var collision = move_and_collide(velocity)
+		# Coliison check
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
 				velocity = velocity.bounce(collision.normal) * 1.5
-				MOVE = false
+#				MOVE = false
+				STATE = 1
+				# For logic purposes 
+				continue_move_after_state_one = true
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -70,20 +84,31 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
-	else:
+	
+	elif STATE == 1:
+		#Player can't control the movement
+		# Happens When the player bumps the walls
+		# Or when the player uses the pulling feature
+		
 		velocity = velocity * FRICTION_0 * delta
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = PI - ang
 		var collision = move_and_collide(velocity)
-		if velocity.length() < 15:
-			MOVE = true
+		if velocity.length() < 15 and continue_move_after_state_one:
+			STATE = 0
+			continue_move_after_state_one = false
+			pulling = false
+			
+		# Coliison check
 		if collision:
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
-				velocity = velocity.bounce(collision.normal) * 1.5
-				velocity = velocity.clamped(MAX_SPEED)
-				MOVE = false
+				velocity = velocity.bounce(collision.normal)
+				var MAX_SPEED_state_1 = 30
+				velocity = velocity.clamped(MAX_SPEED_state_1)
+				if not pulling:
+					continue_move_after_state_one = true
 			else:
 				if "Coin" in collision.collider.name:
 					emit_signal("coin_collected")
@@ -92,3 +117,80 @@ func _physics_process(delta):
 					instance_from_id(object_id).queue_free()
 				else:
 					emit_signal("game_over")
+					
+	elif STATE == -1:
+		var ang = atan2(velocity.x, velocity.y)
+		$PlayerSprite.rotation = ang
+		velocity = Vector2.ZERO
+		var collision = move_and_collide(velocity)
+		if collision:
+			var collided_shape = collision.get_collider_shape()
+			if collided_shape == null:
+				Music.get_node("BorderBump").play()
+				velocity = velocity.bounce(collision.normal)
+				var MAX_SPEED_state_1 = 30
+				velocity = velocity.clamped(MAX_SPEED_state_1)
+				if not pulling:
+					continue_move_after_state_one = true
+			else:
+				if "Coin" in collision.collider.name:
+					emit_signal("coin_collected")
+					Music.get_node("CoinPick").play()
+					var object_id = collision.collider_id
+					instance_from_id(object_id).queue_free()
+				else:
+					emit_signal("game_over")
+
+	elif STATE == -2:
+		velocity = Vector2.ZERO
+		$PlayerSprite.rotation = get_global_mouse_position().angle_to_point(position) + PI / 2
+		var collision = move_and_collide(velocity)
+		if velocity.length() < 15 and continue_move_after_state_one:
+			STATE = 0
+			continue_move_after_state_one = false
+			pulling = false
+			
+		# Coliison check
+		if collision:
+			var collided_shape = collision.get_collider_shape()
+			if collided_shape == null:
+				Music.get_node("BorderBump").play()
+				velocity = velocity.bounce(collision.normal)
+				var MAX_SPEED_state_1 = 30
+				velocity = velocity.clamped(MAX_SPEED_state_1)
+				if not pulling:
+					continue_move_after_state_one = true
+			else:
+				if "Coin" in collision.collider.name:
+					emit_signal("coin_collected")
+					Music.get_node("CoinPick").play()
+					var object_id = collision.collider_id
+					instance_from_id(object_id).queue_free()
+				else:
+					emit_signal("game_over")
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed:
+			if event.position.distance_to(self.position) < 50 and not player_pressed:
+				print("Pressed")
+				player_pressed = true
+				swipe_start_position = self.position
+#				print(swipe_start_position)
+				STATE = -2
+			else:
+				if STATE != 1:
+					STATE = 0
+				else:
+					continue_move_after_state_one = true
+		else:
+			if player_pressed:
+				print("Released")
+				var pointer_drag = event.position
+#				print(pointer_drag)
+				velocity = (pointer_drag - swipe_start_position) * -0.15
+				velocity = velocity.rotated(PI)
+				STATE = 1
+				player_pressed = false
+				pulling = true

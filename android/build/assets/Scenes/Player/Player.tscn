@@ -4,7 +4,8 @@
 [ext_resource path="res://Scenes/Player/PlayerKinematicBody2D.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.8414
+radius = 10.6949
+height = 30.5991
 
 [node name="PlayerKinematicBody2D" type="KinematicBody2D"]
 collision_layer = 2
@@ -14,9 +15,9 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="PlayerSprite" type="Sprite" parent="."]
+scale = Vector2( 1, 1.2 )
+texture = ExtResource( 1 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="PlayerSprite" type="Sprite" parent="."]
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 1 )
