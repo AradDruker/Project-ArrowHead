@@ -19,15 +19,11 @@ func _ready():
 	
 
 
-
-
-
 	if muteMusic_state == 0:
 		AudioServer.set_bus_mute(2, not AudioServer.is_bus_mute(2))
 		
 	if muteSFX_state == 0:
 		AudioServer.set_bus_mute(1, not AudioServer.is_bus_mute(1))
-
 
 
 func create_save():

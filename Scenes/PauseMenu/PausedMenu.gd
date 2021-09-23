@@ -6,7 +6,7 @@ signal Return
 
 
 func _on_Continue_pressed():
-	Music.get_node("ButtonPress").play()
+#	Music.get_node("ButtonPress").play()
 	emit_signal("Continue")
 
 
