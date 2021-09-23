@@ -18,7 +18,3 @@ func _input(event):
 		if not event.pressed and active_swipe:
 			print("released")
 			active_swipe = false
-		
-			
-				
-	

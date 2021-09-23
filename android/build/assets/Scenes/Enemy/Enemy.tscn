@@ -9,8 +9,8 @@
 [ext_resource path="res://Assets/Effects/Explode/explode_2.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.64536
-height = 3.06186
+radius = 7.02462
+height = 6.19643
 
 [sub_resource type="Animation" id=2]
 resource_name = "Explosion"
@@ -58,42 +58,30 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.3, 1.2, 1.5 ),
+"times": PoolRealArray( 0.3, 1.1, 1.5 ),
 "transitions": PoolRealArray( 2, -2, 0.5 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 0 ), Color( 0.815686, 0.835294, 0.85098, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Label:custom_fonts/font:size")
+tracks/4/path = NodePath("Label:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.3, 1.5 ),
-"transitions": PoolRealArray( 2, 0.5 ),
-"update": 0,
-"values": [ 50, 90 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Label:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
 "times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("EnemySprite:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "value"
+tracks/5/path = NodePath("EnemySprite:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -132,7 +120,7 @@ tracks/1/keys = {
 font_path = "res://Assets/Fonts/Kenney Future Narrow.ttf"
 
 [sub_resource type="DynamicFont" id=5]
-size = 50
+size = 100
 font_data = SubResource( 4 )
 
 [node name="EnemyKinematicBody2D" type="KinematicBody2D"]
@@ -148,7 +136,7 @@ scale = Vector2( 0.444103, 0.758298 )
 
 [node name="EnemySprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.38, 0.38 )
 texture = ExtResource( 8 )
 script = ExtResource( 3 )
 
@@ -161,12 +149,11 @@ anims/Explosion = SubResource( 2 )
 anims/Spawn = SubResource( 3 )
 
 [node name="Label" type="Label" parent="."]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
-margin_left = -51.5255
-margin_top = -19.4006
-margin_right = 206.474
-margin_bottom = 83.5994
+margin_left = -56.5102
+margin_top = -19.2806
+margin_right = 225.49
+margin_bottom = 93.7194
 rect_scale = Vector2( 0.4, 0.4 )
 custom_fonts/font = SubResource( 5 )
 text = "+100"
