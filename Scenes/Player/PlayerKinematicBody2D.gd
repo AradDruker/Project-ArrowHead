@@ -18,6 +18,7 @@ var swipe_start_position = Vector2()
 var pull_vector = Vector2()
 var continue_move_after_state_one = false
 var pulling
+var shielded = false
 
 signal game_over
 signal coin_collected
