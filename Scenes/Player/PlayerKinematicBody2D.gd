@@ -174,7 +174,7 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
-			if event.position.distance_to(self.position) < 50 and not player_pressed:
+			if event.position.distance_to(self.position) < 50 and not player_pressed and velocity == Vector2.ZERO:
 				print("Pressed")
 				player_pressed = true
 				swipe_start_position = self.position

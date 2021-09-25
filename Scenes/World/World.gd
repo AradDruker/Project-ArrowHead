@@ -271,9 +271,13 @@ func Current_Skin():
 	if skin_1_use == 1:
 		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_1_sprite)
 		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(1,1.2)
+		$PlayerKinematicBody2D/CollisionPolygon2D_1.set_deferred("disabled", false)
+		$PlayerKinematicBody2D/CollisionPolygon2D_2.set_deferred("disabled", true)
 	elif skin_2_use ==1:
 		$PlayerKinematicBody2D/PlayerSprite.set_texture(skin_2_sprite)
 		$PlayerKinematicBody2D/PlayerSprite.scale = Vector2(0.30,0.20)
+		$PlayerKinematicBody2D/CollisionPolygon2D_1.set_deferred("disabled", true)
+		$PlayerKinematicBody2D/CollisionPolygon2D_2.set_deferred("disabled", false)
 
 
 func save(_world):
