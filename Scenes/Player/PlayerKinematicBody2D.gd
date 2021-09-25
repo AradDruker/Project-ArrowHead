@@ -44,6 +44,7 @@ func _physics_process(delta):
 			velocity = velocity.clamped(MAX_SPEED)
 			var ang = atan2(velocity.x, velocity.y)
 			$PlayerSprite.rotation = PI - ang
+
 			
 		#Player stops
 		#else:
@@ -72,8 +73,7 @@ func _physics_process(delta):
 			var collided_shape = collision.get_collider_shape()
 			if collided_shape == null:
 				Music.get_node("BorderBump").play()
-				velocity = velocity.bounce(collision.normal) * 1.5
-#				MOVE = false
+				velocity = velocity.bounce(collision.normal) * 2
 				STATE = 1
 				# For logic purposes 
 				continue_move_after_state_one = true
@@ -122,6 +122,8 @@ func _physics_process(delta):
 	elif STATE == -1:
 		var ang = atan2(velocity.x, velocity.y)
 		$PlayerSprite.rotation = ang
+		$CollisionPolygon2D_1.rotation = ang
+		$CollisionPolygon2D_2.rotation = ang
 		velocity = Vector2.ZERO
 		var collision = move_and_collide(velocity)
 		if collision:
@@ -145,6 +147,8 @@ func _physics_process(delta):
 	elif STATE == -2:
 		velocity = Vector2.ZERO
 		$PlayerSprite.rotation = get_global_mouse_position().angle_to_point(position) + PI / 2
+		$CollisionPolygon2D_1.rotation = get_global_mouse_position().angle_to_point(position) + PI / 2
+		$CollisionPolygon2D_1.rotation = get_global_mouse_position().angle_to_point(position) + PI / 2
 		var collision = move_and_collide(velocity)
 		if velocity.length() < 15 and continue_move_after_state_one:
 			STATE = 0
