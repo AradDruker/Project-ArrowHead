@@ -43,9 +43,13 @@ disabled = true
 
 [node name="Shield" type="Sprite" parent="."]
 visible = false
-modulate = Color( 1, 1, 1, 0.916667 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="ShieldAnimator" type="AnimationPlayer" parent="Shield"]
 anims/Shield = SubResource( 1 )
+
+[node name="ShieldTimer" type="Timer" parent="Shield"]
+wait_time = 4.0
+
+[node name="TimerOneSecLeft" type="Timer" parent="Shield"]

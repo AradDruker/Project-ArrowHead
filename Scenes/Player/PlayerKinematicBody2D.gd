@@ -139,7 +139,7 @@ func _physics_process(delta):
 					Music.get_node("CoinPick").play()
 					var object_id = collision.collider_id
 					instance_from_id(object_id).queue_free()
-				else:
+				elif not shielded:
 					emit_signal("game_over")
 
 	elif STATE == -2:
@@ -167,6 +167,9 @@ func _physics_process(delta):
 					Music.get_node("CoinPick").play()
 					var object_id = collision.collider_id
 					instance_from_id(object_id).queue_free()
+				elif "Shield" in collision.collider.name:
+					instance_from_id(collision.collider_id).queue_free()
+					
 				else:
 					emit_signal("game_over")
 
