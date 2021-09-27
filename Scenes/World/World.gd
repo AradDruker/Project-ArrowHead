@@ -32,8 +32,6 @@ func _ready():
 	#Sets mouse position to the center of the screen at game start
 	var screen_size = get_viewport().size
 	var start_pos = Vector2(640.0, 360.0)
-	var shield = create_shield()
-	$Shields.add_child(shield)
 	
 	### Signals for buttons
 # warning-ignore:return_value_discarded
