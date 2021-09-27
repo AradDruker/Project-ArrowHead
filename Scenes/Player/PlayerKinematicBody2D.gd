@@ -156,10 +156,12 @@ func collision_no_walls(collisionObject):
 		return "Coin"
 	elif "Shield" in collisionObject.collider.name:
 		shielded = true
+		$Shield.visible = true
 		$Shield/ShieldTimer.start()
 		instance_from_id(collisionObject.collider_id).queue_free()
+		set_collision_mask_bit(2, false)
 		return "Shield"
-	else:
+	elif not shielded:
 		emit_signal("game_over")
 
 func _input(event):
@@ -186,3 +188,15 @@ func _input(event):
 				STATE = 1
 				player_pressed = false
 				pulling = true
+
+
+func _on_ShieldTimer_timeout():
+	$Shield/TimerOneSecLeft.start()
+	$Shield/ShieldAnimator.play("Shield")
+	
+
+
+func _on_TimerOneSecLeft_timeout():
+	set_collision_mask_bit(2, true)
+	$Shield.visible = false
+	shielded = false

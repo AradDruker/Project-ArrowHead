@@ -53,3 +53,6 @@ anims/Shield = SubResource( 1 )
 wait_time = 4.0
 
 [node name="TimerOneSecLeft" type="Timer" parent="Shield"]
+
+[connection signal="timeout" from="Shield/ShieldTimer" to="." method="_on_ShieldTimer_timeout"]
+[connection signal="timeout" from="Shield/TimerOneSecLeft" to="." method="_on_TimerOneSecLeft_timeout"]
