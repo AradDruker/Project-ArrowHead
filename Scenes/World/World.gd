@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var Enemy
+export (PackedScene) var Shield
 
 var skin_1_sprite = preload("res://Assets/Characters/Player.png")
 var skin_2_sprite = preload("res://Assets/Characters/spaceRockets_002.png")
@@ -102,9 +103,7 @@ func _process(_delta):
 
 
 func create_enemy():
-	# Get the number of slice to slice the screen
-	# Exmaple: Input 3 returns a random place within the 1/3 to 2/3 of the border
-	# Generates a random position within 1/3 to 2/3 of the screen
+#	Generate a single enemy at random location
 	randomize()
 	var size = get_viewport().size
 	var x_pos = randi() % int(size.x)
@@ -116,7 +115,19 @@ func create_enemy():
 	enemy.position.x = x_pos
 	enemy.position.y = y_pos
 	return enemy
-	
+
+func create_shield():
+#	Generate a single shield at a random location
+	randomize()
+	var size = get_viewport().size
+	var x_pos = randi() % int(size.x)
+	var y_pos = randi() % int(size.y)
+	x_pos = clamp(x_pos, 100, size.x - 100)
+	y_pos = clamp(y_pos, 100, size.y - 100)
+	var shield = Shield.instance()
+	shield.position.x = x_pos
+	shield.position.y = y_pos
+	return shield
 	
 #First spawn before the spawn intervals.
 func _on_EnemySpawnInstant_timeout():
