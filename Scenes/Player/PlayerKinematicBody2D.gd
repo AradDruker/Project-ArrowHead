@@ -200,3 +200,8 @@ func _on_TimerOneSecLeft_timeout():
 	set_collision_mask_bit(2, true)
 	$Shield.visible = false
 	shielded = false
+
+
+func _on_PlayerArea_body_entered(body):
+	if shielded:
+		print("disable shield")
