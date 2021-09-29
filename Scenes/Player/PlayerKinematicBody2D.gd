@@ -19,6 +19,7 @@ var pull_vector = Vector2()
 var continue_move_after_state_one = false
 var pulling
 var shielded = false
+var shield_hit = false
 
 signal game_over
 signal coin_collected
@@ -193,6 +194,7 @@ func _input(event):
 func _on_ShieldTimer_timeout():
 	$Shield/TimerOneSecLeft.start()
 	$Shield/ShieldAnimator.play("Shield")
+	shield_hit = true
 	
 
 
@@ -200,8 +202,13 @@ func _on_TimerOneSecLeft_timeout():
 	set_collision_mask_bit(2, true)
 	$Shield.visible = false
 	shielded = false
+	shield_hit = false
 
 
 func _on_PlayerArea_body_entered(body):
 	if shielded:
-		print("disable shield")
+		if 'Enemy' in body.name and not shield_hit:
+			shield_hit = true
+			$Shield/ShieldTimer.stop()
+			$Shield/ShieldAnimator.play("Shield")
+			$Shield/TimerOneSecLeft.start()
