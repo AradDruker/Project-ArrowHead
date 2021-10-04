@@ -31,6 +31,12 @@ window/size/height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
+[global]
+
+layrer=false
+layer=false
+la=false
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
@@ -38,9 +44,15 @@ pointing/emulate_touch_from_mouse=true
 [layer_names]
 
 2d_render/layer_1="Borders"
+2d_physics/layer_1="Borders"
 2d_render/layer_2="Player"
+2d_physics/layer_2="Player"
 2d_render/layer_3="Enemy"
+2d_physics/layer_3="Enemy"
 2d_render/layer_4="Coins"
+2d_physics/layer_4="Coin"
+2d_render/layer_5="Shield"
+2d_physics/layer_5="Shield"
 
 [physics]
 

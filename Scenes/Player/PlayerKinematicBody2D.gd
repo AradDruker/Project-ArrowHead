@@ -19,6 +19,7 @@ var pull_vector = Vector2()
 var continue_move_after_state_one = false
 var pulling
 var shielded = false
+var shield_hit = false
 
 signal game_over
 signal coin_collected
@@ -78,13 +79,7 @@ func _physics_process(delta):
 				# For logic purposes 
 				continue_move_after_state_one = true
 			else:
-				if "Coin" in collision.collider.name:
-					emit_signal("coin_collected")
-					Music.get_node("CoinPick").play()
-					var object_id = collision.collider_id
-					instance_from_id(object_id).queue_free()
-				else:
-					emit_signal("game_over")
+				collision_no_walls(collision)
 	
 	elif STATE == 1:
 		#Player can't control the movement
@@ -111,13 +106,7 @@ func _physics_process(delta):
 				if not pulling:
 					continue_move_after_state_one = true
 			else:
-				if "Coin" in collision.collider.name:
-					emit_signal("coin_collected")
-					Music.get_node("CoinPick").play()
-					var object_id = collision.collider_id
-					instance_from_id(object_id).queue_free()
-				else:
-					emit_signal("game_over")
+				collision_no_walls(collision)
 					
 	elif STATE == -1:
 		var ang = atan2(velocity.x, velocity.y)
@@ -134,13 +123,7 @@ func _physics_process(delta):
 				if not pulling:
 					continue_move_after_state_one = true
 			else:
-				if "Coin" in collision.collider.name:
-					emit_signal("coin_collected")
-					Music.get_node("CoinPick").play()
-					var object_id = collision.collider_id
-					instance_from_id(object_id).queue_free()
-				else:
-					emit_signal("game_over")
+				collision_no_walls(collision)
 
 	elif STATE == -2:
 		velocity = Vector2.ZERO
@@ -162,14 +145,25 @@ func _physics_process(delta):
 				if not pulling:
 					continue_move_after_state_one = true
 			else:
-				if "Coin" in collision.collider.name:
-					emit_signal("coin_collected")
-					Music.get_node("CoinPick").play()
-					var object_id = collision.collider_id
-					instance_from_id(object_id).queue_free()
-				else:
-					emit_signal("game_over")
+				collision_no_walls(collision)
 
+
+func collision_no_walls(collisionObject):
+	if "Coin" in collisionObject.collider.name:
+		emit_signal("coin_collected")
+		Music.get_node("CoinPick").play()
+		var object_id = collisionObject.collider_id
+		instance_from_id(object_id).queue_free()
+		return "Coin"
+	elif "Shield" in collisionObject.collider.name:
+		shielded = true
+		$Shield.visible = true
+		$Shield/ShieldTimer.start()
+		instance_from_id(collisionObject.collider_id).queue_free()
+		set_collision_mask_bit(2, false)
+		return "Shield"
+	elif not shielded:
+		emit_signal("game_over")
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -195,3 +189,26 @@ func _input(event):
 				STATE = 1
 				player_pressed = false
 				pulling = true
+
+
+func _on_ShieldTimer_timeout():
+	$Shield/TimerOneSecLeft.start()
+	$Shield/ShieldAnimator.play("Shield")
+	shield_hit = true
+	
+
+
+func _on_TimerOneSecLeft_timeout():
+	set_collision_mask_bit(2, true)
+	$Shield.visible = false
+	shielded = false
+	shield_hit = false
+
+
+func _on_PlayerArea_body_entered(body):
+	if shielded:
+		if 'Enemy' in body.name and not shield_hit:
+			shield_hit = true
+			$Shield/ShieldTimer.stop()
+			$Shield/ShieldAnimator.play("Shield")
+			$Shield/TimerOneSecLeft.start()
