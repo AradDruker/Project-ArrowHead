@@ -13,6 +13,11 @@ func _ready():
 	$PlayerKinematicBody2D.set_process_input(false)
 	$PlayerKinematicBody2D.hide()
 	$TypingTimer.start()
+	
+	
+	
+	$PlayerKinematicBody2D/CollisionPolygon2D_1.set_deferred("disabled", false)
+	$PlayerKinematicBody2D/CollisionPolygon2D_2.set_deferred("disabled", true)
 
 
 func _on_Label_message_done():
@@ -53,3 +58,4 @@ func _on_PauseTime_timeout():
 		$PlayerKinematicBody2D.set_physics_process(false)
 		$Dialog.show()
 		$Dialog.text = messages.pop_front()
+		
