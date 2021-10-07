@@ -48,7 +48,8 @@ func next_stage():
 
 func _on_PauseTime_timeout():
 	if stage == 1:
-		messages = ["Enemies will spawn randomly around the map", "after 4 seconds they will start following you"]
+		messages = ["Enemies will spawn randomly around the map",\
+		"after 4 seconds they will start following you"]
 		$PlayerKinematicBody2D.set_physics_process(false)
 		$Dialog.show()
 		$Dialog.text = messages.pop_front()
