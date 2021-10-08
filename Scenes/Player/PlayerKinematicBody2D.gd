@@ -169,7 +169,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.position.distance_to(self.position) < 50 and not player_pressed and velocity == Vector2.ZERO:
-				print("Pressed")
+#				print("Pressed")
 				player_pressed = true
 				swipe_start_position = self.position
 #				print(swipe_start_position)
@@ -181,7 +181,7 @@ func _input(event):
 					continue_move_after_state_one = true
 		else:
 			if player_pressed:
-				print("Released")
+#				print("Released")
 				var pointer_drag = event.position
 #				print(pointer_drag)
 				velocity = (pointer_drag - swipe_start_position) * -0.15
